@@ -1,0 +1,14 @@
+[remap]
+
+importer="glsl"
+type="RDShaderFile"
+uid="uid://ci8r0pixjqqwc"
+path="res://.godot/imported/path_composite_jfa_line.glsl-40357f493df49d726c2dde11e935d04e.res"
+
+[deps]
+
+source_file="res://shaders/composite/path_composite_jfa_line.glsl"
+dest_files=["res://.godot/imported/path_composite_jfa_line.glsl-40357f493df49d726c2dde11e935d04e.res"]
+
+[params]
+

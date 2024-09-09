@@ -1,0 +1,14 @@
+[remap]
+
+importer="glsl"
+type="RDShaderFile"
+uid="uid://mte48di0snd4"
+path="res://.godot/imported/mipmap_generate.glsl-47a90a1d5c7d46976241bcfbdd9372c4.res"
+
+[deps]
+
+source_file="res://shaders/composite/mipmap_generate.glsl"
+dest_files=["res://.godot/imported/mipmap_generate.glsl-47a90a1d5c7d46976241bcfbdd9372c4.res"]
+
+[params]
+

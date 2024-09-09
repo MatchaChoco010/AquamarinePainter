@@ -1,0 +1,307 @@
+[gd_scene load_steps=13 format=3 uid="uid://cd6xjiluvcmfe"]
+
+[ext_resource type="Script" path="res://src/control/control_transform.gd" id="1_7k5c8"]
+[ext_resource type="Texture2D" uid="uid://x10k6c7p5yn2" path="res://icons/font_awesome/rotate-left-solid.svg" id="1_dn6gb"]
+[ext_resource type="Shader" path="res://shaders/fill.gdshader" id="2_dxc0g"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dvhqb"]
+bg_color = Color(1, 1, 1, 0)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_jqsfc"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_okvfr"]
+bg_color = Color(1, 1, 1, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_1pu6h"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_pmy4g"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_1awu5"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cbp70"]
+bg_color = Color(1, 1, 1, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_bj18v"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_qpuq3"]
+shader = ExtResource("2_dxc0g")
+shader_parameter/fill_color = Color(1, 1, 1, 1)
+
+[node name="ControlTransform" type="Panel"]
+offset_right = 300.0
+offset_bottom = 200.0
+pivot_offset = Vector2(150, 100)
+mouse_filter = 1
+mouse_default_cursor_shape = 13
+theme_override_styles/panel = SubResource("StyleBoxFlat_dvhqb")
+script = ExtResource("1_7k5c8")
+
+[node name="TopControl" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = -6.0
+offset_bottom = 6.0
+grow_horizontal = 2
+mouse_filter = 1
+mouse_default_cursor_shape = 9
+theme_override_styles/panel = SubResource("StyleBoxEmpty_jqsfc")
+
+[node name="Panel" type="Panel" parent="TopControl"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -6.0
+offset_top = -11.0
+offset_right = 6.0
+offset_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+mouse_default_cursor_shape = 9
+theme_override_styles/panel = SubResource("StyleBoxFlat_okvfr")
+
+[node name="LeftControl" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_left = -6.0
+offset_right = 6.0
+grow_vertical = 2
+mouse_filter = 1
+mouse_default_cursor_shape = 10
+theme_override_styles/panel = SubResource("StyleBoxEmpty_1pu6h")
+
+[node name="Panel" type="Panel" parent="LeftControl"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -11.0
+offset_top = -6.0
+offset_right = 1.0
+offset_bottom = 6.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+mouse_default_cursor_shape = 10
+theme_override_styles/panel = SubResource("StyleBoxFlat_okvfr")
+
+[node name="RightControl" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 11
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -6.0
+offset_right = 6.0
+grow_horizontal = 0
+grow_vertical = 2
+mouse_filter = 1
+mouse_default_cursor_shape = 10
+theme_override_styles/panel = SubResource("StyleBoxEmpty_pmy4g")
+
+[node name="Panel" type="Panel" parent="RightControl"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -1.0
+offset_top = -6.0
+offset_right = 11.0
+offset_bottom = 6.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+mouse_default_cursor_shape = 10
+theme_override_styles/panel = SubResource("StyleBoxFlat_okvfr")
+
+[node name="BottomControl" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -6.0
+offset_bottom = 6.0
+grow_horizontal = 2
+grow_vertical = 0
+mouse_filter = 1
+mouse_default_cursor_shape = 9
+theme_override_styles/panel = SubResource("StyleBoxEmpty_1awu5")
+
+[node name="Panel" type="Panel" parent="BottomControl"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -6.0
+offset_top = -1.0
+offset_right = 6.0
+offset_bottom = 11.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+mouse_default_cursor_shape = 9
+theme_override_styles/panel = SubResource("StyleBoxFlat_okvfr")
+
+[node name="TopLeftControl" type="Panel" parent="."]
+layout_mode = 1
+offset_left = -11.0
+offset_top = -11.0
+offset_right = 1.0
+offset_bottom = 1.0
+mouse_filter = 1
+mouse_default_cursor_shape = 12
+theme_override_styles/panel = SubResource("StyleBoxFlat_cbp70")
+
+[node name="TopRightControl" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -1.0
+offset_top = -11.0
+offset_right = 11.0
+offset_bottom = 1.0
+grow_horizontal = 0
+mouse_filter = 1
+mouse_default_cursor_shape = 11
+theme_override_styles/panel = SubResource("StyleBoxFlat_cbp70")
+
+[node name="BottomLeftControl" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = -11.0
+offset_top = -1.0
+offset_right = 1.0
+offset_bottom = 11.0
+grow_vertical = 0
+mouse_filter = 1
+mouse_default_cursor_shape = 11
+theme_override_styles/panel = SubResource("StyleBoxFlat_cbp70")
+
+[node name="BottomRightControl" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -1.0
+offset_top = -1.0
+offset_right = 11.0
+offset_bottom = 11.0
+grow_horizontal = 0
+grow_vertical = 0
+mouse_filter = 1
+mouse_default_cursor_shape = 12
+theme_override_styles/panel = SubResource("StyleBoxFlat_cbp70")
+
+[node name="RotationControl" type="Panel" parent="."]
+custom_minimum_size = Vector2(24, 24)
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -12.0
+offset_top = -38.0
+offset_right = 12.0
+offset_bottom = -14.0
+grow_horizontal = 2
+mouse_filter = 1
+mouse_default_cursor_shape = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_bj18v")
+
+[node name="Sprite2D2" type="Sprite2D" parent="RotationControl"]
+position = Vector2(10, 10)
+scale = Vector2(0.04, 0.04)
+texture = ExtResource("1_dn6gb")
+
+[node name="Sprite2D3" type="Sprite2D" parent="RotationControl"]
+position = Vector2(14, 10)
+scale = Vector2(0.04, 0.04)
+texture = ExtResource("1_dn6gb")
+
+[node name="Sprite2D4" type="Sprite2D" parent="RotationControl"]
+position = Vector2(10, 14)
+scale = Vector2(0.04, 0.04)
+texture = ExtResource("1_dn6gb")
+
+[node name="Sprite2D5" type="Sprite2D" parent="RotationControl"]
+position = Vector2(14, 14)
+scale = Vector2(0.04, 0.04)
+texture = ExtResource("1_dn6gb")
+
+[node name="Sprite2D6" type="Sprite2D" parent="RotationControl"]
+position = Vector2(12, 10)
+scale = Vector2(0.04, 0.04)
+texture = ExtResource("1_dn6gb")
+
+[node name="Sprite2D7" type="Sprite2D" parent="RotationControl"]
+position = Vector2(10, 12)
+scale = Vector2(0.04, 0.04)
+texture = ExtResource("1_dn6gb")
+
+[node name="Sprite2D8" type="Sprite2D" parent="RotationControl"]
+position = Vector2(14, 12)
+scale = Vector2(0.04, 0.04)
+texture = ExtResource("1_dn6gb")
+
+[node name="Sprite2D9" type="Sprite2D" parent="RotationControl"]
+position = Vector2(12, 14)
+scale = Vector2(0.04, 0.04)
+texture = ExtResource("1_dn6gb")
+
+[node name="Sprite2D" type="Sprite2D" parent="RotationControl"]
+material = SubResource("ShaderMaterial_qpuq3")
+position = Vector2(12, 12)
+scale = Vector2(0.04, 0.04)
+texture = ExtResource("1_dn6gb")
+
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]
+[connection signal="mouse_entered" from="TopControl" to="." method="_on_top_control_mouse_entered"]
+[connection signal="mouse_exited" from="TopControl" to="." method="_on_top_control_mouse_exited"]
+[connection signal="mouse_entered" from="LeftControl" to="." method="_on_left_control_mouse_entered"]
+[connection signal="mouse_exited" from="LeftControl" to="." method="_on_left_control_mouse_exited"]
+[connection signal="mouse_entered" from="RightControl" to="." method="_on_right_control_mouse_entered"]
+[connection signal="mouse_exited" from="RightControl" to="." method="_on_right_control_mouse_exited"]
+[connection signal="mouse_entered" from="BottomControl" to="." method="_on_bottom_control_mouse_entered"]
+[connection signal="mouse_exited" from="BottomControl" to="." method="_on_bottom_control_mouse_exited"]
+[connection signal="mouse_entered" from="TopLeftControl" to="." method="_on_top_left_control_mouse_entered"]
+[connection signal="mouse_exited" from="TopLeftControl" to="." method="_on_top_left_control_mouse_exited"]
+[connection signal="mouse_entered" from="TopRightControl" to="." method="_on_top_right_control_mouse_entered"]
+[connection signal="mouse_exited" from="TopRightControl" to="." method="_on_top_right_control_mouse_exited"]
+[connection signal="mouse_entered" from="BottomLeftControl" to="." method="_on_bottom_left_control_mouse_entered"]
+[connection signal="mouse_exited" from="BottomLeftControl" to="." method="_on_bottom_left_control_mouse_exited"]
+[connection signal="mouse_entered" from="BottomRightControl" to="." method="_on_bottom_right_control_mouse_entered"]
+[connection signal="mouse_exited" from="BottomRightControl" to="." method="_on_bottom_right_control_mouse_exited"]
+[connection signal="mouse_entered" from="RotationControl" to="." method="_on_rotation_control_mouse_entered"]
+[connection signal="mouse_exited" from="RotationControl" to="." method="_on_rotation_control_mouse_exited"]

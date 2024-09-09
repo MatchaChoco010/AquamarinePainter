@@ -1,0 +1,14 @@
+[remap]
+
+importer="glsl"
+type="RDShaderFile"
+uid="uid://cmq2gvcm4lhss"
+path="res://.godot/imported/init_jfa_line.glsl-f5884ea84b633ab94427f53e5c4a7bcd.res"
+
+[deps]
+
+source_file="res://shaders/composite/init_jfa_line.glsl"
+dest_files=["res://.godot/imported/init_jfa_line.glsl-f5884ea84b633ab94427f53e5c4a7bcd.res"]
+
+[params]
+

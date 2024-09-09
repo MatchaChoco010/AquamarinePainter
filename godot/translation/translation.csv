@@ -1,0 +1,95 @@
+keys,ja,en
+MENU_FILE,ファイル,File
+MENU_EDIT,編集,Edit
+MENU_TOOL,ツール,Tool
+FILE_NEW_DOCUMENT,新規ドキュメント,New Document
+FILE_OPEN_DOCUMENT,ドキュメントを開く,Open Document
+FILE_SAVE,上書き保存,Save
+FILE_SAVE_AS,別名で保存,Save As
+FILE_CLOSE_DOCUMENT,ドキュメントを閉じる,Close Document
+FILE_EXPORT_IMAGE,画像のエクスポート,Export Image
+EDIT_UNDO,もとに戻す,Undo
+EDIT_REDO,やり直し,Redo
+EDIT_CHANGE_DOCUMENT_SIZE,ドキュメントサイズの変更,Change Document Size
+TOOL_CONFIG,環境設定,Config
+TOOL_LICENSES,ライセンス,Licenses
+BLEND_MODE_NORMAL,通常,Normal
+BLEND_MODE_ADD,加算,Add
+BLEND_MODE_MULTIPLY,乗算,Multiply
+BLEND_MODE_SCREEN,スクリーン,Screen
+BLEND_MODE_OVERLAY,オーバーレイ,Overlay
+BOOLEAN_UNION,結合,Union
+BOOLEAN_DIFF,除外,Diff
+BOOLEAN_INTERSECT,交差,Intersect
+BOOLEAN_XOR,中マド,Xor
+LAYER_SETTINGS_FILL,"塗り: ","Fill: "
+LAYER_SETTINGS_LINE,"線: ","Line: "
+LAYER_SETTINGS_LINE_WIDTH,"線幅: ","Line Width: "
+MATERIAL_SOLID,単色,Solid Color
+MATERIAL_LINEAR_GRADIENT,線形グラデーション,Linear Gradiation
+MATERIAL_RADIAL_GRADIENT,放射グラデーション,Radial Gradiation
+MATERIAL_CONFIRM_DELETE_TITLE,マテリアルの削除の確認,Confirmation of Material Deletion
+MATERIAL_CONFIRM_DELETE_TEXT,マテリアルを削除します。,Delete material.
+MATERIAL_CONFIRM_DELETE_OK,OK,Confirm
+MATERIAL_CONFIRM_DELETE_CANCEL,キャンセル,Cacnel
+CONFIG_TITLE,環境設定,Config
+CONFIG_LANGUAGE,"言語設定: ","Language: "
+CONFIG_CURRENT_LANGUAGE,日本語,English
+CONFIG_ENABLE_AUTO_SAVE,"自動保存を有効にする: ","Enable Auto Save: "
+CONFIG_AUTO_SAVE_INTERVAL,"自動保存の間隔 (秒): ","Auto save interval (seconds): "
+CONFIG_CLOSE,閉じる,Close
+EXPORT_TITLE,エクスポート,Export
+EXPORT_WIDTH,"幅: ","Width: "
+EXPORT_HEIGHT,"高さ: ","Height: "
+EXPORT_EXPORT,エクスポート,Export
+EXPORT_CANCEL,キャンセル,Cancel
+NEW_DOCUMENT_TITLE,新規ドキュメント,New Document
+NEW_DOCUMENT_SIZE_PRESET,サイズプリセット,Size Presets
+NEW_DOCUMENT_WIDTH,"幅: ","Width: "
+NEW_DOCUMENT_HEIGHT,"高さ: ","Height: "
+NEW_DOCUMENT_CREATE,作成,Create
+NEW_DOCUMENT_CANCEL,キャンセル,Cancel
+DOCUMENT_SIZE_TITLE,ドキュメントサイズ変更,Change Document Size
+DOCUMENT_SIZE_WIDTH,"幅: ","Width: "
+DOCUMENT_SIZE_HEIGHT,"高さ: ","Height: "
+DOCUMENT_SIZE_ANCHOR,"アンカー: ","Anchor: "
+DOCUMENT_SIZE_CHANGE_SIZE,サイズ変更,Change Size
+DOCUMENT_SIZE_CANCEL,キャンセル,Cancel
+LINEAR_GRADIENT_START_POINT,"開始点: ","Start Point: "
+LINEAR_GRADIENT_END_POINT,"終了点: ","End Point: "
+LINEAR_GRADIENT_EDIT,編集,Edit
+RADIAL_GRADIENT_CENTER_POINT,"中心点: ","Center Point: "
+RADIAL_GRADIENT_HANDLE_1,"ハンドル1: ","Handle 1: "
+RADIAL_GRADIENT_HANDLE_2,"ハンドル2: ","Handle 2: "
+RADIAL_GRADIENT_EDIT,編集,Edit
+TOOLTIP_DRAWING_TOOL,描画ツール,Drawing Tool
+TOOLTIP_MANIPULATE_TOOL,操作ツール,Manipulate Tool
+TOOLTIP_PARAMETER_TUNING_TOOL,調整ツール,Parameter Tuning Tool
+TOOLTIP_EXPAND,枠内に収める,Expand
+TOOLTIP_RESET_ZOOM,拡大率をリセット,Reset Zoom
+TOOLTIP_MIRROR,左右反転,Mirror
+TOOLTIP_BLEND_MODE,ブレンドモード,Blend Mode
+TOOLTIP_ALPHA,透明度,Alpha
+TOOLTIP_NEW_PATH_LAYER,新規パスレイヤーの追加,Add New Path Layer
+TOOLTIP_NEW_FILL_LAYER,新規塗りつぶしレイヤーの追加,Add New Fill Layer
+TOOLTIP_NEW_GROUP_LAYER,新規フォルダーレイヤーの追加,Add New Group Layer
+TOOLTIP_DELETE_LAYER,レイヤーの削除,Delete Layer
+TOOLTIP_CLIPPING,下のレイヤーでクリッピング,Clipping on the lower layer
+TOOLTIP_LAYER_LOCK,レイヤーのロック,Layer Lock
+TOOLTIP_PATH_OPEN_CLOSE,パスのOpen/Closed切り替え,Open/Closed path switching
+TOOLTIP_BOOLEAN,パスのブーリアン演算,Boolean operations on paths
+TOOLTIP_SHOW_FILL_MATERIAL,塗りのマテリアルを表示,Show fill material
+TOOLTIP_HIDE_FILL_MATERIAL,塗りのマテリアルを非表示,Hide fill material
+TOOLTIP_SELECT_FILL_MATERIAL,塗りのマテリアルの選択,Select fill material
+TOOLTIP_SHOE_LINE_MATERIAL,線のマテリアルを表示,Show line material
+TOOLTIP_HIDE_LINE_MATERIAL,線のマテリアルを非表示,Hide line material
+TOOLTIP_SELECT_LINE_MATERIAL,線のマテリアルの選択,Select line material
+TOOLTIP_LINE_WIDTH,線の幅,Line width
+TOOLTIP_SELECT_FILL_LAYER_MATERIAL,塗りつぶしのマテリアルの選択,Select fill layer material
+TOOLTIP_ADD_MATERIAL,マテリアルの追加,Add Material
+TOOLTIP_DELETE_MATERIAL,マテリアルの削除,Delete Material
+TOOLTIP_MATRERIAL_DELETED,マテリアルが削除されています。,The material is deleted.
+LAYER,レイヤー,Layer
+PATH,パス,Path
+MATERIAL,マテリアル,Material
+COPY,コピー,Copy

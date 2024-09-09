@@ -1,0 +1,34 @@
+[gd_scene load_steps=8 format=3 uid="uid://biwyb60wav3xb"]
+
+[ext_resource type="Script" path="res://src/layer/path.gd" id="1_jh877"]
+[ext_resource type="Shader" path="res://shaders/missing_material.gdshader" id="2_dd7m4"]
+[ext_resource type="Shader" path="res://shaders/linear_gradient_path.gdshader" id="3_tec1e"]
+[ext_resource type="Shader" path="res://shaders/radial_gradient_path.gdshader" id="4_2ehwr"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_h2vc1"]
+shader = ExtResource("2_dd7m4")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_yd0m4"]
+shader = ExtResource("3_tec1e")
+shader_parameter/start_point = Vector2(0, 0)
+shader_parameter/end_point = Vector2(1, 0)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_b7tlp"]
+shader = ExtResource("4_2ehwr")
+shader_parameter/center_point = Vector2(0, 0)
+shader_parameter/handle_1_point = Vector2(1, 0)
+shader_parameter/handle_2_point = Vector2(1, 0)
+
+[node name="Path" type="SubViewport"]
+transparent_bg = true
+msaa_2d = 1
+canvas_item_default_texture_filter = 2
+render_target_update_mode = 0
+script = ExtResource("1_jh877")
+missing_material = SubResource("ShaderMaterial_h2vc1")
+linear_gradient_material = SubResource("ShaderMaterial_yd0m4")
+radial_gradient_material = SubResource("ShaderMaterial_b7tlp")
+
+[node name="Line2D" type="Line2D" parent="."]
+
+[node name="Polygon2D" type="Polygon2D" parent="."]

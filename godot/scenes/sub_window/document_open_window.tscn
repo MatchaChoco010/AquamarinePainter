@@ -1,0 +1,125 @@
+[gd_scene load_steps=5 format=3 uid="uid://b0t6n35a5uvxu"]
+
+[ext_resource type="Script" path="res://src/sub_window/document_open_window.gd" id="1_n32n5"]
+[ext_resource type="Shader" path="res://shaders/fill.gdshader" id="2_qtysa"]
+[ext_resource type="Texture2D" uid="uid://cnqkj40h44qeh" path="res://icons/font_awesome/arrow-right-arrow-left-solid.svg" id="3_rub81"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_sfrdi"]
+shader = ExtResource("2_qtysa")
+shader_parameter/fill_color = Color(1, 1, 1, 1)
+
+[node name="DocumentOpenWindow" type="Window"]
+title = "NEW_DOCUMENT_TITLE"
+initial_position = 2
+size = Vector2i(420, 160)
+transient = true
+unresizable = true
+popup_window = true
+script = ExtResource("1_n32n5")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/separation = 12
+alignment = 1
+
+[node name="MenuButton" type="MenuButton" parent="VBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(240, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+text = "NEW_DOCUMENT_SIZE_PRESET"
+flat = false
+item_count = 8
+popup/item_0/text = "800x600"
+popup/item_1/text = "1024x600"
+popup/item_1/id = 1
+popup/item_2/text = "1024x768"
+popup/item_2/id = 2
+popup/item_3/text = "1280x720"
+popup/item_3/id = 3
+popup/item_4/text = "1280x960"
+popup/item_4/id = 4
+popup/item_5/text = "1600x900"
+popup/item_5/id = 5
+popup/item_6/text = "1600x1200"
+popup/item_6/id = 6
+popup/item_7/text = "1920x1080"
+popup/item_7/id = 7
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/HBoxContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "NEW_DOCUMENT_WIDTH"
+
+[node name="WidthSpinBox" type="SpinBox" parent="VBoxContainer/HBoxContainer/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+min_value = 1.0
+max_value = 2048.0
+value = 1.0
+select_all_on_focus = true
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="VBoxContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/HBoxContainer/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+text = "NEW_DOCUMENT_HEIGHT"
+
+[node name="HeightSpinBox" type="SpinBox" parent="VBoxContainer/HBoxContainer/VBoxContainer/HBoxContainer2"]
+unique_name_in_owner = true
+layout_mode = 2
+min_value = 1.0
+max_value = 2048.0
+value = 1.0
+select_all_on_focus = true
+
+[node name="SwitchButton" type="Button" parent="VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(24, 0)
+layout_mode = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="VBoxContainer/HBoxContainer/SwitchButton"]
+material = SubResource("ShaderMaterial_sfrdi")
+position = Vector2(12, 32)
+scale = Vector2(0.03, 0.03)
+texture = ExtResource("3_rub81")
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+alignment = 2
+
+[node name="CreateButton" type="Button" parent="VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+text = "NEW_DOCUMENT_CREATE"
+
+[node name="Space2" type="Control" parent="VBoxContainer/HBoxContainer2"]
+custom_minimum_size = Vector2(4, 0)
+layout_mode = 2
+
+[node name="CancelButton" type="Button" parent="VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+text = "NEW_DOCUMENT_CANCEL"
+
+[node name="Space" type="Control" parent="VBoxContainer/HBoxContainer2"]
+custom_minimum_size = Vector2(24, 0)
+layout_mode = 2
+
+[connection signal="close_requested" from="." to="." method="_on_close_requested"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/SwitchButton" to="." method="_on_switch_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer2/CreateButton" to="." method="_on_create_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer2/CancelButton" to="." method="_on_cancel_button_pressed"]

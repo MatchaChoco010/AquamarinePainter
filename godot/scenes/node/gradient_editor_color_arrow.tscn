@@ -1,0 +1,37 @@
+[gd_scene load_steps=6 format=3 uid="uid://dmry8668lobcy"]
+
+[ext_resource type="Script" path="res://src/node/gradient_editor_color_arrow.gd" id="1_awnen"]
+[ext_resource type="Texture2D" uid="uid://cwtuhfpnanbh8" path="res://icons/gradient-editor-color-arrow.svg" id="1_dexvh"]
+[ext_resource type="Shader" path="res://shaders/fill.gdshader" id="1_smwwm"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_y3k24"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_1ntfu"]
+shader = ExtResource("1_smwwm")
+shader_parameter/fill_color = Color(0.0980392, 0.0980392, 0.0980392, 1)
+
+[node name="GradientEditorColorArrow" type="Panel"]
+offset_left = -12.0
+offset_right = 12.0
+offset_bottom = 48.0
+theme_override_styles/panel = SubResource("StyleBoxEmpty_y3k24")
+script = ExtResource("1_awnen")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+unique_name_in_owner = true
+material = SubResource("ShaderMaterial_1ntfu")
+position = Vector2(12, 32)
+scale = Vector2(0.05, 0.05)
+texture = ExtResource("1_dexvh")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 4.0
+offset_top = 30.0
+offset_right = 20.0
+offset_bottom = 46.0
+mouse_filter = 2
+
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]

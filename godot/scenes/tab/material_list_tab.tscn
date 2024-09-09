@@ -1,0 +1,143 @@
+[gd_scene load_steps=9 format=3 uid="uid://blv25euce0b64"]
+
+[ext_resource type="Script" path="res://src/tab/material_list_tab.gd" id="1_ftvdy"]
+[ext_resource type="Shader" path="res://shaders/fill.gdshader" id="2_6lobi"]
+[ext_resource type="Texture2D" uid="uid://6u0brruaecvq" path="res://icons/font_awesome/plus-solid.svg" id="3_s6swb"]
+[ext_resource type="Texture2D" uid="uid://cfy4c56trjpcp" path="res://icons/font_awesome/trash-solid.svg" id="4_sf0jd"]
+[ext_resource type="PackedScene" uid="uid://83wedgkgqa8o" path="res://scenes/node/list_drop_cursor.tscn" id="5_oph0f"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ieycl"]
+content_margin_left = 2.0
+content_margin_top = 6.0
+content_margin_right = 2.0
+bg_color = Color(0.6, 0.6, 0.6, 0.392157)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_2qbq5"]
+shader = ExtResource("2_6lobi")
+shader_parameter/fill_color = Color(1, 1, 1, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_f2bfi"]
+content_margin_top = 2.0
+content_margin_bottom = 2.0
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[node name="PaintMaterialListTab" type="PanelContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ftvdy")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="Buttons" type="PanelContainer" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_ieycl")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/Buttons"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/Buttons/VBoxContainer"]
+layout_mode = 2
+
+[node name="AddButton" type="MenuButton" parent="VBoxContainer/Buttons/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+tooltip_text = "TOOLTIP_ADD_MATERIAL"
+flat = false
+expand_icon = true
+item_count = 3
+popup/item_0/text = "MATERIAL_SOLID"
+popup/item_1/text = "MATERIAL_LINEAR_GRADIENT"
+popup/item_1/id = 1
+popup/item_2/text = "MATERIAL_RADIAL_GRADIENT"
+popup/item_2/id = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="VBoxContainer/Buttons/VBoxContainer/HBoxContainer/AddButton"]
+material = SubResource("ShaderMaterial_2qbq5")
+position = Vector2(16, 16)
+scale = Vector2(0.04, 0.04)
+texture = ExtResource("3_s6swb")
+
+[node name="DeleteButton" type="Button" parent="VBoxContainer/Buttons/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+tooltip_text = "TOOLTIP_DELETE_MATERIAL"
+focus_mode = 0
+expand_icon = true
+
+[node name="Sprite2D" type="Sprite2D" parent="VBoxContainer/Buttons/VBoxContainer/HBoxContainer/DeleteButton"]
+material = SubResource("ShaderMaterial_2qbq5")
+position = Vector2(16, 16)
+scale = Vector2(0.03, 0.03)
+texture = ExtResource("4_sf0jd")
+
+[node name="Popup" type="Popup" parent="VBoxContainer/Buttons/VBoxContainer/HBoxContainer/DeleteButton"]
+title = "MATERIAL_CONFIRM_DELETE_TITLE"
+initial_position = 2
+size = Vector2i(180, 100)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/Buttons/VBoxContainer/HBoxContainer/DeleteButton/Popup"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -77.5
+offset_top = -29.0
+offset_right = 77.5
+offset_bottom = 29.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/Buttons/VBoxContainer/HBoxContainer/DeleteButton/Popup/VBoxContainer"]
+layout_mode = 2
+text = "MATERIAL_CONFIRM_DELETE_TEXT"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/Buttons/VBoxContainer/HBoxContainer/DeleteButton/Popup/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="OkButton" type="Button" parent="VBoxContainer/Buttons/VBoxContainer/HBoxContainer/DeleteButton/Popup/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(60, 0)
+layout_mode = 2
+text = "MATERIAL_CONFIRM_DELETE_OK"
+
+[node name="CancelButton" type="Button" parent="VBoxContainer/Buttons/VBoxContainer/HBoxContainer/DeleteButton/Popup/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "MATERIAL_CONFIRM_DELETE_CANCEL"
+
+[node name="HSeparator" type="HSeparator" parent="VBoxContainer/Buttons/VBoxContainer"]
+layout_mode = 2
+
+[node name="ScrollContainer" type="ScrollContainer" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+horizontal_scroll_mode = 0
+
+[node name="PanelContainer" type="PanelContainer" parent="VBoxContainer/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+mouse_filter = 1
+theme_override_styles/panel = SubResource("StyleBoxFlat_f2bfi")
+
+[node name="ListContainer" type="VBoxContainer" parent="VBoxContainer/ScrollContainer/PanelContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/separation = 0
+
+[node name="ListDropCursor" parent="VBoxContainer/ScrollContainer/PanelContainer/ListContainer" instance=ExtResource("5_oph0f")]
+visible = false
+layout_mode = 2
+
+[connection signal="button_up" from="VBoxContainer/Buttons/VBoxContainer/HBoxContainer/DeleteButton" to="." method="_on_delete_button_button_up"]
+[connection signal="button_up" from="VBoxContainer/Buttons/VBoxContainer/HBoxContainer/DeleteButton/Popup/VBoxContainer/HBoxContainer/OkButton" to="." method="_on_ok_button_button_up"]
+[connection signal="button_up" from="VBoxContainer/Buttons/VBoxContainer/HBoxContainer/DeleteButton/Popup/VBoxContainer/HBoxContainer/CancelButton" to="." method="_on_cancel_button_button_up"]

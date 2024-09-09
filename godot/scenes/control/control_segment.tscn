@@ -1,0 +1,14 @@
+[gd_scene load_steps=4 format=3 uid="uid://ctlbctut31mb8"]
+
+[ext_resource type="Shader" path="res://shaders/fill.gdshader" id="1_kfr7m"]
+[ext_resource type="Script" path="res://src/control/control_segment.gd" id="1_vb88m"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_fcsnq"]
+shader = ExtResource("1_kfr7m")
+shader_parameter/fill_color = Color(1, 1, 1, 1)
+
+[node name="ControlSegment" type="Node2D"]
+script = ExtResource("1_vb88m")
+
+[node name="Line2D" type="Line2D" parent="."]
+material = SubResource("ShaderMaterial_fcsnq")

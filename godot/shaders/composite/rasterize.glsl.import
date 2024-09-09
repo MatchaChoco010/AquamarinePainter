@@ -1,0 +1,14 @@
+[remap]
+
+importer="glsl"
+type="RDShaderFile"
+uid="uid://doe67sucfd7sb"
+path="res://.godot/imported/rasterize.glsl-a916df1092d3c270aa536fde6c4ecaa3.res"
+
+[deps]
+
+source_file="res://shaders/composite/rasterize.glsl"
+dest_files=["res://.godot/imported/rasterize.glsl-a916df1092d3c270aa536fde6c4ecaa3.res"]
+
+[params]
+

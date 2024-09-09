@@ -1,0 +1,86 @@
+[gd_scene load_steps=2 format=3 uid="uid://dferwtnot6vxw"]
+
+[ext_resource type="Script" path="res://src/sub_window/document_export_window.gd" id="1_tdgkl"]
+
+[node name="DocumentExportWindow" type="Window"]
+title = "EXPORT_TITLE"
+initial_position = 2
+size = Vector2i(420, 100)
+transient = true
+unresizable = true
+popup_window = true
+script = ExtResource("1_tdgkl")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/separation = 12
+alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/HBoxContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/HBoxContainer/HBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "EXPORT_WIDTH"
+
+[node name="WidthSpinBox" type="SpinBox" parent="VBoxContainer/HBoxContainer/HBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+min_value = 1.0
+max_value = 2048.0
+value = 1.0
+select_all_on_focus = true
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="VBoxContainer/HBoxContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/HBoxContainer/HBoxContainer/HBoxContainer2"]
+layout_mode = 2
+text = "EXPORT_HEIGHT"
+
+[node name="HeightSpinBox" type="SpinBox" parent="VBoxContainer/HBoxContainer/HBoxContainer/HBoxContainer2"]
+unique_name_in_owner = true
+layout_mode = 2
+min_value = 1.0
+max_value = 2048.0
+value = 1.0
+select_all_on_focus = true
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+alignment = 2
+
+[node name="ExportButton" type="Button" parent="VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+text = "EXPORT_EXPORT"
+
+[node name="Space2" type="Control" parent="VBoxContainer/HBoxContainer2"]
+custom_minimum_size = Vector2(4, 0)
+layout_mode = 2
+
+[node name="CancelButton" type="Button" parent="VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+text = "EXPORT_CANCEL"
+
+[node name="Space" type="Control" parent="VBoxContainer/HBoxContainer2"]
+custom_minimum_size = Vector2(24, 0)
+layout_mode = 2
+
+[connection signal="close_requested" from="." to="." method="_on_close_requested"]
+[connection signal="value_changed" from="VBoxContainer/HBoxContainer/HBoxContainer/HBoxContainer/WidthSpinBox" to="." method="_on_width_spin_box_value_changed"]
+[connection signal="value_changed" from="VBoxContainer/HBoxContainer/HBoxContainer/HBoxContainer2/HeightSpinBox" to="." method="_on_height_spin_box_value_changed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer2/ExportButton" to="." method="_on_create_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer2/CancelButton" to="." method="_on_cancel_button_pressed"]

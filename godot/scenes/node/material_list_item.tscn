@@ -1,0 +1,144 @@
+[gd_scene load_steps=18 format=3 uid="uid://clsrljwk4jsph"]
+
+[ext_resource type="Script" path="res://src/node/material_list_item.gd" id="1_qgde6"]
+[ext_resource type="Shader" path="res://shaders/fill_checker_alpha.gdshader" id="2_h5yow"]
+[ext_resource type="Shader" path="res://shaders/linear_gradient_checker_alpha.gdshader" id="3_0m1d3"]
+[ext_resource type="Shader" path="res://shaders/radial_gradient_checker_alpha.gdshader" id="4_cb2k2"]
+[ext_resource type="PackedScene" uid="uid://djow8u4pxw5sl" path="res://scenes/node/linear_gradient_picker.tscn" id="4_iyron"]
+[ext_resource type="PackedScene" uid="uid://bl0lqn8s0d1d3" path="res://scenes/node/radial_gradient_picker.tscn" id="6_5vs5c"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pyity"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_5rytv"]
+shader = ExtResource("2_h5yow")
+shader_parameter/fill_color = Color(1, 1, 1, 1)
+shader_parameter/document_size = Vector2(64, 24)
+shader_parameter/document_scale = 1.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_smcwm"]
+shader = ExtResource("3_0m1d3")
+shader_parameter/document_size = Vector2(64, 24)
+shader_parameter/document_scale = 1.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_urnwi"]
+shader = ExtResource("4_cb2k2")
+shader_parameter/document_size = Vector2(64, 24)
+shader_parameter/document_scale = 1.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6qubt"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_hsq3x"]
+shader = ExtResource("2_h5yow")
+shader_parameter/fill_color = Color(1, 1, 1, 0)
+shader_parameter/document_size = Vector2(64, 24)
+shader_parameter/document_scale = 1.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_c6ww5"]
+bg_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cax14"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_y3ecf"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_b5gnl"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_c6wcm"]
+bg_color = Color(0, 0, 0, 0.784314)
+
+[node name="ColorPaintMaterialListItem" type="PanelContainer"]
+custom_minimum_size = Vector2(0, 32)
+offset_right = 154.0
+offset_bottom = 32.0
+size_flags_horizontal = 3
+mouse_filter = 1
+theme_override_styles/panel = SubResource("StyleBoxFlat_pyity")
+script = ExtResource("1_qgde6")
+_color_material = SubResource("ShaderMaterial_5rytv")
+_linear_gradient_material = SubResource("ShaderMaterial_smcwm")
+_radial_gradient_material = SubResource("ShaderMaterial_urnwi")
+
+[node name="Padding" type="PanelContainer" parent="."]
+layout_mode = 2
+mouse_filter = 1
+theme_override_styles/panel = SubResource("StyleBoxFlat_6qubt")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Padding"]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="Button" type="Button" parent="Padding/HBoxContainer"]
+custom_minimum_size = Vector2(64, 0)
+layout_mode = 2
+focus_mode = 0
+mouse_filter = 1
+
+[node name="Color" type="Panel" parent="Padding/HBoxContainer/Button"]
+unique_name_in_owner = true
+material = SubResource("ShaderMaterial_hsq3x")
+custom_minimum_size = Vector2(64, 0)
+layout_mode = 2
+offset_right = 64.0
+offset_bottom = 24.0
+size_flags_horizontal = 0
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_c6ww5")
+
+[node name="NameText" type="LineEdit" parent="Padding/HBoxContainer"]
+unique_name_in_owner = true
+auto_translate_mode = 2
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 1
+theme_override_font_sizes/font_size = 12
+theme_override_styles/focus = SubResource("StyleBoxFlat_cax14")
+theme_override_styles/read_only = SubResource("StyleBoxEmpty_y3ecf")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_b5gnl")
+editable = false
+context_menu_enabled = false
+middle_mouse_paste_enabled = false
+selecting_enabled = false
+drag_and_drop_selection_enabled = false
+
+[node name="DraggingtPanel" type="Panel" parent="."]
+visible = false
+layout_mode = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_c6wcm")
+
+[node name="PopupPanel" type="PopupPanel" parent="."]
+position = Vector2i(0, 44)
+size = Vector2i(306, 584)
+
+[node name="ColorPicker" type="ColorPicker" parent="PopupPanel"]
+offset_left = 4.0
+offset_top = 4.0
+offset_right = 302.0
+offset_bottom = 580.0
+
+[node name="LinearGradientPicker" parent="." instance=ExtResource("4_iyron")]
+visible = false
+
+[node name="RadialGradientPicker" parent="." instance=ExtResource("6_5vs5c")]
+visible = false
+
+[connection signal="mouse_entered" from="Padding" to="." method="_on_padding_mouse_entered"]
+[connection signal="mouse_exited" from="Padding" to="." method="_on_padding_mouse_exited"]
+[connection signal="button_up" from="Padding/HBoxContainer/Button" to="." method="_on_button_button_up"]
+[connection signal="text_changed" from="Padding/HBoxContainer/NameText" to="." method="_on_line_edit_text_changed"]
+[connection signal="text_submitted" from="Padding/HBoxContainer/NameText" to="." method="_on_line_edit_text_submitted"]
+[connection signal="popup_hide" from="PopupPanel" to="." method="_on_popup_panel_popup_hide"]
+[connection signal="color_changed" from="PopupPanel/ColorPicker" to="." method="_on_color_picker_color_changed"]
+[connection signal="on_gradient_changed" from="LinearGradientPicker" to="." method="_on_linear_gradient_picker_on_gradient_changed"]
+[connection signal="popup_hide" from="LinearGradientPicker" to="." method="_on_linear_gradient_picker_popup_hide"]
+[connection signal="on_gradient_changed" from="RadialGradientPicker" to="." method="_on_radial_gradient_picker_on_gradient_changed"]
+[connection signal="popup_hide" from="RadialGradientPicker" to="." method="_on_radial_gradient_picker_popup_hide"]

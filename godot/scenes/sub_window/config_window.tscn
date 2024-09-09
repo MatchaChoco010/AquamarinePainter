@@ -1,0 +1,87 @@
+[gd_scene load_steps=2 format=3 uid="uid://dd4oq7jxlensx"]
+
+[ext_resource type="Script" path="res://src/sub_window/config_window.gd" id="1_p462n"]
+
+[node name="ConfigWindow" type="Window"]
+title = "CONFIG_TITLE"
+initial_position = 2
+size = Vector2i(420, 160)
+transient = true
+unresizable = true
+popup_window = true
+script = ExtResource("1_p462n")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/separation = 12
+alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "CONFIG_LANGUAGE"
+
+[node name="LanguageMenuButton" type="MenuButton" parent="VBoxContainer/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "CONFIG_CURRENT_LANGUAGE"
+flat = false
+item_count = 2
+popup/item_0/text = "日本語"
+popup/item_1/text = "English"
+popup/item_1/id = 1
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="VBoxContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/VBoxContainer/HBoxContainer3"]
+layout_mode = 2
+text = "CONFIG_ENABLE_AUTO_SAVE"
+
+[node name="AutoSaveCheckBox" type="CheckBox" parent="VBoxContainer/VBoxContainer/HBoxContainer3"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="HBoxContainer4" type="HBoxContainer" parent="VBoxContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/VBoxContainer/HBoxContainer4"]
+layout_mode = 2
+text = "CONFIG_AUTO_SAVE_INTERVAL"
+
+[node name="AutoSaveSpinBox" type="SpinBox" parent="VBoxContainer/VBoxContainer/HBoxContainer4"]
+unique_name_in_owner = true
+layout_mode = 2
+min_value = 1.0
+max_value = 3600.0
+value = 300.0
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+alignment = 2
+
+[node name="CloseButton" type="Button" parent="VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+text = "CONFIG_CLOSE"
+
+[node name="Space" type="Control" parent="VBoxContainer/HBoxContainer2"]
+custom_minimum_size = Vector2(24, 0)
+layout_mode = 2
+
+[connection signal="close_requested" from="." to="." method="_on_close_requested"]
+[connection signal="toggled" from="VBoxContainer/VBoxContainer/HBoxContainer3/AutoSaveCheckBox" to="." method="_on_auto_save_check_box_toggled"]
+[connection signal="value_changed" from="VBoxContainer/VBoxContainer/HBoxContainer4/AutoSaveSpinBox" to="." method="_on_auto_save_spin_box_value_changed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer2/CloseButton" to="." method="_on_close_button_pressed"]

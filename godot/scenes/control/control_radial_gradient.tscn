@@ -1,0 +1,103 @@
+[gd_scene load_steps=9 format=3 uid="uid://blrkftxov4tvd"]
+
+[ext_resource type="Script" path="res://src/control/control_radial_gradient.gd" id="1_tgq8f"]
+[ext_resource type="Shader" path="res://shaders/fill.gdshader" id="2_0g4id"]
+[ext_resource type="Texture2D" uid="uid://d4dxklmx6r8is" path="res://icons/font_awesome/circle-solid.svg" id="3_6ffsl"]
+[ext_resource type="Texture2D" uid="uid://cwvu8b6n6ba6b" path="res://icons/font_awesome/circle-regular.svg" id="4_xvy6l"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_vgdx4"]
+radius = 12.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_r8oe2"]
+shader = ExtResource("2_0g4id")
+shader_parameter/fill_color = Color(1, 1, 1, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_i3wlg"]
+shader = ExtResource("2_0g4id")
+shader_parameter/fill_color = Color(0, 0, 0, 1)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_vx16l"]
+
+[node name="ControlRadialGradient" type="Node2D"]
+script = ExtResource("1_tgq8f")
+
+[node name="Line2D1" type="Line2D" parent="."]
+unique_name_in_owner = true
+points = PackedVector2Array(0, 0, 100, 0)
+width = 5.0
+default_color = Color(1, 1, 1, 0.501961)
+
+[node name="Line2D2" type="Line2D" parent="."]
+unique_name_in_owner = true
+points = PackedVector2Array(0, 0, 0, -100)
+width = 5.0
+default_color = Color(1, 1, 1, 0.501961)
+
+[node name="CenterPoint" type="Node2D" parent="."]
+unique_name_in_owner = true
+
+[node name="CenterArea2D" type="Area2D" parent="CenterPoint"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CenterPoint/CenterArea2D"]
+shape = SubResource("CircleShape2D_vgdx4")
+
+[node name="CenterSprite2D" type="Sprite2D" parent="CenterPoint"]
+unique_name_in_owner = true
+material = SubResource("ShaderMaterial_r8oe2")
+scale = Vector2(0.04, 0.04)
+texture = ExtResource("3_6ffsl")
+
+[node name="CenterSprite2D2" type="Sprite2D" parent="CenterPoint"]
+unique_name_in_owner = true
+material = SubResource("ShaderMaterial_i3wlg")
+scale = Vector2(0.025, 0.025)
+texture = ExtResource("4_xvy6l")
+
+[node name="Handle1Point" type="Node2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(100, 0)
+
+[node name="Handle1Area2D" type="Area2D" parent="Handle1Point"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Handle1Point/Handle1Area2D"]
+shape = SubResource("CircleShape2D_vx16l")
+
+[node name="Handle1Sprite2D" type="Sprite2D" parent="Handle1Point"]
+unique_name_in_owner = true
+material = SubResource("ShaderMaterial_r8oe2")
+scale = Vector2(0.025, 0.025)
+texture = ExtResource("3_6ffsl")
+
+[node name="Handle1Sprite2D2" type="Sprite2D" parent="Handle1Point"]
+unique_name_in_owner = true
+material = SubResource("ShaderMaterial_i3wlg")
+scale = Vector2(0.025, 0.025)
+texture = ExtResource("4_xvy6l")
+
+[node name="Handle2Point" type="Node2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(0, -100)
+
+[node name="Handle2Area2D" type="Area2D" parent="Handle2Point"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Handle2Point/Handle2Area2D"]
+shape = SubResource("CircleShape2D_vx16l")
+
+[node name="Handle2Sprite2D" type="Sprite2D" parent="Handle2Point"]
+unique_name_in_owner = true
+material = SubResource("ShaderMaterial_r8oe2")
+scale = Vector2(0.025, 0.025)
+texture = ExtResource("3_6ffsl")
+
+[node name="Handle2Sprite2D2" type="Sprite2D" parent="Handle2Point"]
+unique_name_in_owner = true
+material = SubResource("ShaderMaterial_i3wlg")
+scale = Vector2(0.025, 0.025)
+texture = ExtResource("4_xvy6l")
+
+[connection signal="mouse_entered" from="CenterPoint/CenterArea2D" to="." method="_on_center_area_2d_mouse_entered"]
+[connection signal="mouse_exited" from="CenterPoint/CenterArea2D" to="." method="_on_center_area_2d_mouse_exited"]
+[connection signal="mouse_entered" from="Handle1Point/Handle1Area2D" to="." method="_on_handle_1_area_2d_mouse_entered"]
+[connection signal="mouse_exited" from="Handle1Point/Handle1Area2D" to="." method="_on_handle_1_area_2d_mouse_exited"]
+[connection signal="mouse_entered" from="Handle2Point/Handle2Area2D" to="." method="_on_handle_2_area_2d_mouse_entered"]
+[connection signal="mouse_exited" from="Handle2Point/Handle2Area2D" to="." method="_on_handle_2_area_2d_mouse_exited"]

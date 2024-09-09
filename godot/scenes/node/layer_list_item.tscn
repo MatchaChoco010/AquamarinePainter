@@ -1,0 +1,365 @@
+[gd_scene load_steps=44 format=3 uid="uid://bsh7inpct6qfa"]
+
+[ext_resource type="Script" path="res://src/node/layer_list_item.gd" id="1_bj6dd"]
+[ext_resource type="Shader" path="res://shaders/fill.gdshader" id="2_klhf3"]
+[ext_resource type="Texture2D" uid="uid://cp43s5pjuigfc" path="res://icons/font_awesome/eye-solid.svg" id="3_leknr"]
+[ext_resource type="Texture2D" uid="uid://bs6y5xvpid1hl" path="res://icons/font_awesome/eye-slash-solid.svg" id="4_w4jag"]
+[ext_resource type="Texture2D" uid="uid://07j3j13jje5v" path="res://icons/font_awesome/pen-nib-solid.svg" id="5_ou1hq"]
+[ext_resource type="Texture2D" uid="uid://yof4lmve8kdo" path="res://icons/font_awesome/folder-open-regular.svg" id="6_k6cky"]
+[ext_resource type="Texture2D" uid="uid://bgaugxuhl5lvm" path="res://icons/font_awesome/lock-solid.svg" id="6_kfw3k"]
+[ext_resource type="Texture2D" uid="uid://dbdfmeeypughg" path="res://icons/font_awesome/folder-regular.svg" id="7_ncive"]
+[ext_resource type="Texture2D" uid="uid://bihym07yhfwvb" path="res://icons/font_awesome/caret-down-solid.svg" id="8_vkygf"]
+[ext_resource type="Texture2D" uid="uid://1jifl7a7wmah" path="res://icons/font_awesome/caret-right-solid.svg" id="9_fb6nd"]
+[ext_resource type="Shader" path="res://shaders/texture_checker_alpha.gdshader" id="10_2ibs7"]
+[ext_resource type="Texture2D" uid="uid://bkls8jpsc3ps5" path="res://icons/union.svg" id="10_g20d4"]
+[ext_resource type="Texture2D" uid="uid://c8eyxuhtxxx2w" path="res://icons/font_awesome/fill-solid.svg" id="10_nbeeb"]
+[ext_resource type="Texture2D" uid="uid://esb812dxjhx3" path="res://icons/diff.svg" id="11_ux43y"]
+[ext_resource type="Texture2D" uid="uid://delwiq2ud4o5b" path="res://icons/intersect.svg" id="12_cu8tf"]
+[ext_resource type="Texture2D" uid="uid://bsxiknl4vq61y" path="res://icons/xor.svg" id="13_ivlsh"]
+[ext_resource type="Texture2D" uid="uid://b4pppiaal50ew" path="res://icons/font_awesome/circle-question-solid.svg" id="17_m778j"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pyity"]
+bg_color = Color(0.2, 0.2, 0.2, 1)
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_6gion"]
+color = Color(0.266667, 0.266667, 0.266667, 1)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_xr2hg"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_mh0ym"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_nxfcb"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_56cox"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_pi05j"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_etyw0"]
+shader = ExtResource("2_klhf3")
+shader_parameter/fill_color = Color(0.4, 0.4, 0.4, 1)
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_hg1ec"]
+color = Color(0.266667, 0.266667, 0.266667, 1)
+vertical = true
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_f1jh4"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_lqmmd"]
+shader = ExtResource("2_klhf3")
+shader_parameter/fill_color = Color(0.8, 0.8, 0.8, 1)
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_hgco8"]
+color = Color(0.266667, 0.266667, 0.266667, 1)
+vertical = true
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6qubt"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 5.0
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ylncw"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_fohug"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_wwj3h"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_3a6jb"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ye4cw"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_cuuu8"]
+shader = ExtResource("2_klhf3")
+shader_parameter/fill_color = Color(0.8, 0.8, 0.8, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_rjxm6"]
+shader = ExtResource("10_2ibs7")
+shader_parameter/document_size = Vector2(480, 720)
+shader_parameter/document_scale = 1.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cax14"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_y3ecf"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_b5gnl"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_3srct"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_dlgp3"]
+shader = ExtResource("2_klhf3")
+shader_parameter/fill_color = Color(1, 1, 1, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_c6wcm"]
+bg_color = Color(0, 0, 0, 0.784314)
+
+[node name="LayerListItem" type="PanelContainer"]
+custom_minimum_size = Vector2(0, 48)
+offset_right = 280.0
+offset_bottom = 48.0
+size_flags_horizontal = 3
+mouse_filter = 1
+theme_override_styles/panel = SubResource("StyleBoxFlat_pyity")
+script = ExtResource("1_bj6dd")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="HSeparator" type="HSeparator" parent="VBoxContainer"]
+layout_mode = 2
+mouse_filter = 1
+theme_override_constants/separation = 1
+theme_override_styles/separator = SubResource("StyleBoxLine_6gion")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 0
+
+[node name="EyeButton" type="Button" parent="VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(24, 24)
+layout_mode = 2
+focus_mode = 0
+mouse_filter = 1
+theme_override_styles/focus = SubResource("StyleBoxEmpty_xr2hg")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_mh0ym")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_nxfcb")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_56cox")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_pi05j")
+
+[node name="EyeOpen" type="Sprite2D" parent="VBoxContainer/HBoxContainer/EyeButton"]
+material = SubResource("ShaderMaterial_etyw0")
+position = Vector2(12, 24)
+scale = Vector2(0.02, 0.02)
+texture = ExtResource("3_leknr")
+
+[node name="EyeSlash" type="Sprite2D" parent="VBoxContainer/HBoxContainer/EyeButton"]
+material = SubResource("ShaderMaterial_etyw0")
+position = Vector2(12, 24)
+scale = Vector2(0.02, 0.02)
+texture = ExtResource("4_w4jag")
+
+[node name="VSeparator" type="VSeparator" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+mouse_filter = 1
+theme_override_styles/separator = SubResource("StyleBoxLine_hg1ec")
+
+[node name="PenPanel" type="Panel" parent="VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+visible = false
+custom_minimum_size = Vector2(24, 24)
+layout_mode = 2
+mouse_filter = 1
+theme_override_styles/panel = SubResource("StyleBoxEmpty_f1jh4")
+
+[node name="Sprite2D" type="Sprite2D" parent="VBoxContainer/HBoxContainer/PenPanel"]
+material = SubResource("ShaderMaterial_lqmmd")
+position = Vector2(12, 24)
+scale = Vector2(0.025, 0.025)
+texture = ExtResource("5_ou1hq")
+
+[node name="LockedPanel" type="Panel" parent="VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(24, 24)
+layout_mode = 2
+mouse_filter = 1
+theme_override_styles/panel = SubResource("StyleBoxEmpty_f1jh4")
+
+[node name="Sprite2D" type="Sprite2D" parent="VBoxContainer/HBoxContainer/LockedPanel"]
+material = SubResource("ShaderMaterial_lqmmd")
+position = Vector2(12, 24)
+scale = Vector2(0.025, 0.025)
+texture = ExtResource("6_kfw3k")
+
+[node name="VSeparator2" type="VSeparator" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+mouse_filter = 1
+theme_override_styles/separator = SubResource("StyleBoxLine_hgco8")
+
+[node name="Spacer" type="ColorRect" parent="VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+mouse_filter = 1
+color = Color(1, 1, 1, 0)
+
+[node name="Padding" type="PanelContainer" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+mouse_filter = 1
+theme_override_styles/panel = SubResource("StyleBoxFlat_6qubt")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/HBoxContainer/Padding"]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="ClippingRect" type="ColorRect" parent="VBoxContainer/HBoxContainer/Padding/HBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(4, 0)
+layout_mode = 2
+mouse_filter = 1
+color = Color(1, 0.501961, 0.768627, 1)
+
+[node name="CollapseButton" type="Button" parent="VBoxContainer/HBoxContainer/Padding/HBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(24, 0)
+layout_mode = 2
+focus_mode = 0
+mouse_filter = 1
+theme_override_styles/focus = SubResource("StyleBoxEmpty_ylncw")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_fohug")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_wwj3h")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_3a6jb")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_ye4cw")
+
+[node name="FolderOpen" type="Sprite2D" parent="VBoxContainer/HBoxContainer/Padding/HBoxContainer/CollapseButton"]
+material = SubResource("ShaderMaterial_cuuu8")
+position = Vector2(12, 20)
+scale = Vector2(0.7, 0.7)
+texture = ExtResource("6_k6cky")
+
+[node name="FolderClose" type="Sprite2D" parent="VBoxContainer/HBoxContainer/Padding/HBoxContainer/CollapseButton"]
+visible = false
+material = SubResource("ShaderMaterial_cuuu8")
+position = Vector2(12, 20)
+scale = Vector2(0.7, 0.7)
+texture = ExtResource("7_ncive")
+
+[node name="CaretOpen" type="Sprite2D" parent="VBoxContainer/HBoxContainer/Padding/HBoxContainer/CollapseButton"]
+visible = false
+material = SubResource("ShaderMaterial_cuuu8")
+position = Vector2(12, 20)
+scale = Vector2(0.035, 0.035)
+texture = ExtResource("8_vkygf")
+
+[node name="CaretClose" type="Sprite2D" parent="VBoxContainer/HBoxContainer/Padding/HBoxContainer/CollapseButton"]
+visible = false
+material = SubResource("ShaderMaterial_cuuu8")
+position = Vector2(12, 20)
+scale = Vector2(0.035, 0.035)
+texture = ExtResource("9_fb6nd")
+
+[node name="FillMark" type="Sprite2D" parent="VBoxContainer/HBoxContainer/Padding/HBoxContainer/CollapseButton"]
+visible = false
+material = SubResource("ShaderMaterial_cuuu8")
+position = Vector2(12, 20)
+scale = Vector2(0.03, 0.03)
+texture = ExtResource("10_nbeeb")
+
+[node name="Thumbnail" type="Panel" parent="VBoxContainer/HBoxContainer/Padding/HBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(38, 38)
+layout_mode = 2
+mouse_filter = 1
+
+[node name="ThumbnailRect" type="ColorRect" parent="VBoxContainer/HBoxContainer/Padding/HBoxContainer/Thumbnail"]
+texture_filter = 4
+material = SubResource("ShaderMaterial_rjxm6")
+layout_mode = 0
+offset_right = 24.0
+offset_bottom = 38.0
+mouse_filter = 1
+
+[node name="Spacer" type="ColorRect" parent="VBoxContainer/HBoxContainer/Padding/HBoxContainer"]
+custom_minimum_size = Vector2(8, 0)
+layout_mode = 2
+mouse_filter = 1
+color = Color(1, 1, 1, 0)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/HBoxContainer/Padding/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/HBoxContainer/Padding/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 4
+
+[node name="BlendModeText" type="Label" parent="VBoxContainer/HBoxContainer/Padding/HBoxContainer/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.8, 0.8, 0.8, 1)
+theme_override_font_sizes/font_size = 10
+text = "通常"
+
+[node name="AlphaText" type="Label" parent="VBoxContainer/HBoxContainer/Padding/HBoxContainer/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0.8, 0.8, 0.8, 1)
+theme_override_font_sizes/font_size = 10
+text = "100%"
+
+[node name="BooleanPanel" type="Panel" parent="VBoxContainer/HBoxContainer/Padding/HBoxContainer/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(14, 0)
+layout_mode = 2
+mouse_filter = 2
+
+[node name="Union" type="Sprite2D" parent="VBoxContainer/HBoxContainer/Padding/HBoxContainer/VBoxContainer/HBoxContainer/BooleanPanel"]
+position = Vector2(7, 7)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("10_g20d4")
+
+[node name="Diff" type="Sprite2D" parent="VBoxContainer/HBoxContainer/Padding/HBoxContainer/VBoxContainer/HBoxContainer/BooleanPanel"]
+visible = false
+position = Vector2(7, 7)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("11_ux43y")
+
+[node name="Intersect" type="Sprite2D" parent="VBoxContainer/HBoxContainer/Padding/HBoxContainer/VBoxContainer/HBoxContainer/BooleanPanel"]
+visible = false
+position = Vector2(7, 7)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("12_cu8tf")
+
+[node name="Xor" type="Sprite2D" parent="VBoxContainer/HBoxContainer/Padding/HBoxContainer/VBoxContainer/HBoxContainer/BooleanPanel"]
+visible = false
+position = Vector2(7, 7)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("13_ivlsh")
+
+[node name="NameText" type="LineEdit" parent="VBoxContainer/HBoxContainer/Padding/HBoxContainer/VBoxContainer"]
+unique_name_in_owner = true
+auto_translate_mode = 2
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 1
+theme_override_font_sizes/font_size = 12
+theme_override_styles/focus = SubResource("StyleBoxFlat_cax14")
+theme_override_styles/read_only = SubResource("StyleBoxEmpty_y3ecf")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_b5gnl")
+editable = false
+context_menu_enabled = false
+middle_mouse_paste_enabled = false
+selecting_enabled = false
+drag_and_drop_selection_enabled = false
+
+[node name="MissingPanel" type="Panel" parent="VBoxContainer/HBoxContainer/Padding/HBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(32, 0)
+layout_mode = 2
+tooltip_text = "TOOLTIP_MATRERIAL_DELETED"
+mouse_filter = 1
+theme_override_styles/panel = SubResource("StyleBoxEmpty_3srct")
+
+[node name="Sprite2D" type="Sprite2D" parent="VBoxContainer/HBoxContainer/Padding/HBoxContainer/MissingPanel"]
+material = SubResource("ShaderMaterial_dlgp3")
+position = Vector2(16, 19)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("17_m778j")
+
+[node name="DraggingtPanel" type="Panel" parent="."]
+visible = false
+layout_mode = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_c6wcm")
+
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]
+[connection signal="button_up" from="VBoxContainer/HBoxContainer/EyeButton" to="." method="_on_eye_button_button_up"]
+[connection signal="button_up" from="VBoxContainer/HBoxContainer/Padding/HBoxContainer/CollapseButton" to="." method="_on_collapse_button_button_up"]
+[connection signal="text_changed" from="VBoxContainer/HBoxContainer/Padding/HBoxContainer/VBoxContainer/NameText" to="." method="_on_line_edit_text_changed"]
+[connection signal="text_submitted" from="VBoxContainer/HBoxContainer/Padding/HBoxContainer/VBoxContainer/NameText" to="." method="_on_line_edit_text_submitted"]

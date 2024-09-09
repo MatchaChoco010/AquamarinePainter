@@ -1,0 +1,406 @@
+[gd_scene load_steps=27 format=3 uid="uid://c8ge45ar23ppv"]
+
+[ext_resource type="Script" path="res://src/tab/layer_setting_tab.gd" id="1_mebqs"]
+[ext_resource type="Shader" path="res://shaders/missing_material.gdshader" id="2_8cncw"]
+[ext_resource type="StyleBox" uid="uid://cvvu0fweitcpr" path="res://styles/flat_color_button.tres" id="2_cxx1c"]
+[ext_resource type="Shader" path="res://shaders/linear_gradient_checker_alpha.gdshader" id="3_rloo5"]
+[ext_resource type="Shader" path="res://shaders/fill.gdshader" id="3_xqoo3"]
+[ext_resource type="Texture2D" uid="uid://w3jj8dsk5ee" path="res://icons/font_awesome/square-regular.svg" id="4_87elw"]
+[ext_resource type="Shader" path="res://shaders/radial_gradient_checker_alpha.gdshader" id="5_jy12q"]
+[ext_resource type="Texture2D" uid="uid://byheik8rybqlc" path="res://icons/font_awesome/slash-solid.svg" id="5_p8u4y"]
+[ext_resource type="Texture2D" uid="uid://dfnl502akgfg8" path="res://icons/font_awesome/square-solid.svg" id="6_wg8l6"]
+[ext_resource type="PackedScene" uid="uid://bctakxrfgwaor" path="res://scenes/node/material_select_popup.tscn" id="7_3ul3g"]
+[ext_resource type="Shader" path="res://shaders/fill_checker_alpha.gdshader" id="7_rkdh5"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_0bfa8"]
+shader = ExtResource("2_8cncw")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_4a6yf"]
+shader = ExtResource("7_rkdh5")
+shader_parameter/fill_color = Color(1, 1, 1, 1)
+shader_parameter/document_size = Vector2(64, 24)
+shader_parameter/document_scale = 1.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_bl5ba"]
+shader = ExtResource("3_rloo5")
+shader_parameter/document_size = Vector2(64, 24)
+shader_parameter/document_scale = 1.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ahgsv"]
+shader = ExtResource("5_jy12q")
+shader_parameter/document_size = Vector2(64, 24)
+shader_parameter/document_scale = 1.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_wh8b0"]
+shader = ExtResource("3_xqoo3")
+shader_parameter/fill_color = Color(1, 1, 1, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_sg8hq"]
+shader = ExtResource("3_xqoo3")
+shader_parameter/fill_color = Color(1, 1, 1, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_i7x5w"]
+bg_color = Color(0, 0, 0, 0.784314)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_s8urq"]
+bg_color = Color(0, 0, 0, 0.784314)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5xoro"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_2syiy"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dkh1d"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_4auj0"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ycrbb"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_jic5n"]
+shader = ExtResource("7_rkdh5")
+shader_parameter/fill_color = Color(1, 1, 1, 0)
+shader_parameter/document_size = Vector2(64, 24)
+shader_parameter/document_scale = 1.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tgaui"]
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+
+[node name="LayerSetting" type="PanelContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_mebqs")
+_missing_material = SubResource("ShaderMaterial_0bfa8")
+_color_material = SubResource("ShaderMaterial_4a6yf")
+_linear_gradient_material = SubResource("ShaderMaterial_bl5ba")
+_radial_gradient_material = SubResource("ShaderMaterial_ahgsv")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 2
+theme_override_constants/separation = 4
+
+[node name="FillMaterial" type="HBoxContainer" parent="VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_constants/separation = 4
+
+[node name="Label" type="Label" parent="VBoxContainer/FillMaterial"]
+custom_minimum_size = Vector2(42, 0)
+layout_mode = 2
+text = "LAYER_SETTINGS_FILL"
+
+[node name="EmptyButton" type="Button" parent="VBoxContainer/FillMaterial"]
+clip_contents = true
+custom_minimum_size = Vector2(24, 24)
+layout_mode = 2
+size_flags_vertical = 4
+tooltip_text = "TOOLTIP_HIDE_FILL_MATERIAL"
+focus_mode = 0
+mouse_default_cursor_shape = 2
+theme_override_styles/focus = ExtResource("2_cxx1c")
+theme_override_styles/disabled = ExtResource("2_cxx1c")
+theme_override_styles/hover = ExtResource("2_cxx1c")
+theme_override_styles/pressed = ExtResource("2_cxx1c")
+theme_override_styles/normal = ExtResource("2_cxx1c")
+
+[node name="Sprite2D" type="Sprite2D" parent="VBoxContainer/FillMaterial/EmptyButton"]
+material = SubResource("ShaderMaterial_wh8b0")
+position = Vector2(12, 12)
+scale = Vector2(0.03, 0.03)
+texture = ExtResource("4_87elw")
+
+[node name="Sprite2D2" type="Sprite2D" parent="VBoxContainer/FillMaterial/EmptyButton"]
+material = SubResource("ShaderMaterial_sg8hq")
+position = Vector2(12, 12)
+scale = Vector2(0.03, 0.03)
+texture = ExtResource("5_p8u4y")
+
+[node name="Panel" type="Panel" parent="VBoxContainer/FillMaterial/EmptyButton"]
+layout_mode = 0
+offset_right = 24.0
+offset_bottom = 24.0
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_i7x5w")
+
+[node name="FillButton" type="Button" parent="VBoxContainer/FillMaterial"]
+clip_contents = true
+custom_minimum_size = Vector2(24, 24)
+layout_mode = 2
+size_flags_vertical = 4
+tooltip_text = "TOOLTIP_SHOW_FILL_MATERIAL"
+focus_mode = 0
+mouse_default_cursor_shape = 2
+theme_override_styles/focus = ExtResource("2_cxx1c")
+theme_override_styles/disabled = ExtResource("2_cxx1c")
+theme_override_styles/hover = ExtResource("2_cxx1c")
+theme_override_styles/pressed = ExtResource("2_cxx1c")
+theme_override_styles/normal = ExtResource("2_cxx1c")
+
+[node name="Sprite2D" type="Sprite2D" parent="VBoxContainer/FillMaterial/FillButton"]
+material = SubResource("ShaderMaterial_wh8b0")
+position = Vector2(12, 12)
+scale = Vector2(0.03, 0.03)
+texture = ExtResource("6_wg8l6")
+
+[node name="Panel" type="Panel" parent="VBoxContainer/FillMaterial/FillButton"]
+layout_mode = 0
+offset_right = 24.0
+offset_bottom = 24.0
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_s8urq")
+
+[node name="ColorButton" type="Button" parent="VBoxContainer/FillMaterial"]
+clip_contents = true
+custom_minimum_size = Vector2(64, 32)
+layout_mode = 2
+size_flags_horizontal = 3
+tooltip_text = "塗りのマテリアルの選択"
+focus_mode = 0
+mouse_default_cursor_shape = 2
+theme_override_styles/focus = SubResource("StyleBoxFlat_5xoro")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_2syiy")
+theme_override_styles/hover = SubResource("StyleBoxFlat_dkh1d")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_4auj0")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_ycrbb")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/FillMaterial/ColorButton"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -12.0
+offset_right = 146.0
+offset_bottom = 12.0
+grow_vertical = 2
+
+[node name="Color" type="Panel" parent="VBoxContainer/FillMaterial/ColorButton/HBoxContainer"]
+material = SubResource("ShaderMaterial_jic5n")
+custom_minimum_size = Vector2(64, 0)
+layout_mode = 2
+size_flags_horizontal = 0
+mouse_filter = 1
+theme_override_styles/panel = SubResource("StyleBoxFlat_tgaui")
+
+[node name="Label" type="Label" parent="VBoxContainer/FillMaterial/ColorButton/HBoxContainer"]
+auto_translate_mode = 2
+layout_mode = 2
+theme_override_font_sizes/font_size = 12
+text = "Material 0"
+
+[node name="MaterialSelectPopup" parent="VBoxContainer/FillMaterial/ColorButton" instance=ExtResource("7_3ul3g")]
+visible = false
+
+[node name="LineMaterial" type="HBoxContainer" parent="VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_constants/separation = 4
+
+[node name="Label" type="Label" parent="VBoxContainer/LineMaterial"]
+custom_minimum_size = Vector2(42, 0)
+layout_mode = 2
+text = "LAYER_SETTINGS_LINE"
+
+[node name="EmptyButton" type="Button" parent="VBoxContainer/LineMaterial"]
+clip_contents = true
+custom_minimum_size = Vector2(24, 24)
+layout_mode = 2
+size_flags_vertical = 4
+tooltip_text = "TOOLTIP_HIDE_LINE_MATERIAL"
+focus_mode = 0
+mouse_default_cursor_shape = 2
+theme_override_styles/focus = ExtResource("2_cxx1c")
+theme_override_styles/disabled = ExtResource("2_cxx1c")
+theme_override_styles/hover = ExtResource("2_cxx1c")
+theme_override_styles/pressed = ExtResource("2_cxx1c")
+theme_override_styles/normal = ExtResource("2_cxx1c")
+
+[node name="Sprite2D" type="Sprite2D" parent="VBoxContainer/LineMaterial/EmptyButton"]
+material = SubResource("ShaderMaterial_wh8b0")
+position = Vector2(12, 12)
+scale = Vector2(0.03, 0.03)
+texture = ExtResource("4_87elw")
+
+[node name="Sprite2D2" type="Sprite2D" parent="VBoxContainer/LineMaterial/EmptyButton"]
+material = SubResource("ShaderMaterial_sg8hq")
+position = Vector2(12, 12)
+scale = Vector2(0.03, 0.03)
+texture = ExtResource("5_p8u4y")
+
+[node name="Panel" type="Panel" parent="VBoxContainer/LineMaterial/EmptyButton"]
+layout_mode = 0
+offset_right = 24.0
+offset_bottom = 24.0
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_i7x5w")
+
+[node name="FillButton" type="Button" parent="VBoxContainer/LineMaterial"]
+clip_contents = true
+custom_minimum_size = Vector2(24, 24)
+layout_mode = 2
+size_flags_vertical = 4
+tooltip_text = "TOOLTIP_SHOW_LINE_MATERIAL"
+focus_mode = 0
+mouse_default_cursor_shape = 2
+theme_override_styles/focus = ExtResource("2_cxx1c")
+theme_override_styles/disabled = ExtResource("2_cxx1c")
+theme_override_styles/hover = ExtResource("2_cxx1c")
+theme_override_styles/pressed = ExtResource("2_cxx1c")
+theme_override_styles/normal = ExtResource("2_cxx1c")
+
+[node name="Sprite2D" type="Sprite2D" parent="VBoxContainer/LineMaterial/FillButton"]
+material = SubResource("ShaderMaterial_wh8b0")
+position = Vector2(12, 12)
+scale = Vector2(0.03, 0.03)
+texture = ExtResource("6_wg8l6")
+
+[node name="Panel" type="Panel" parent="VBoxContainer/LineMaterial/FillButton"]
+layout_mode = 0
+offset_right = 24.0
+offset_bottom = 24.0
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_s8urq")
+
+[node name="ColorButton" type="Button" parent="VBoxContainer/LineMaterial"]
+clip_contents = true
+custom_minimum_size = Vector2(64, 32)
+layout_mode = 2
+size_flags_horizontal = 3
+tooltip_text = "TOOLTIP_SELECT_LINE_MATERIAL"
+focus_mode = 0
+mouse_default_cursor_shape = 2
+theme_override_styles/focus = SubResource("StyleBoxFlat_5xoro")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_2syiy")
+theme_override_styles/hover = SubResource("StyleBoxFlat_dkh1d")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_4auj0")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_ycrbb")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/LineMaterial/ColorButton"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -12.0
+offset_right = 146.0
+offset_bottom = 12.0
+grow_vertical = 2
+
+[node name="Color" type="Panel" parent="VBoxContainer/LineMaterial/ColorButton/HBoxContainer"]
+material = SubResource("ShaderMaterial_jic5n")
+custom_minimum_size = Vector2(64, 0)
+layout_mode = 2
+size_flags_horizontal = 0
+mouse_filter = 1
+theme_override_styles/panel = SubResource("StyleBoxFlat_tgaui")
+
+[node name="Label" type="Label" parent="VBoxContainer/LineMaterial/ColorButton/HBoxContainer"]
+auto_translate_mode = 2
+layout_mode = 2
+theme_override_font_sizes/font_size = 12
+text = "Material 0"
+
+[node name="MaterialSelectPopup" parent="VBoxContainer/LineMaterial/ColorButton" instance=ExtResource("7_3ul3g")]
+visible = false
+
+[node name="LineWidth" type="HBoxContainer" parent="VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/LineWidth"]
+custom_minimum_size = Vector2(42, 0)
+layout_mode = 2
+text = "LAYER_SETTINGS_LINE_WIDTH"
+
+[node name="HSlider" type="HSlider" parent="VBoxContainer/LineWidth"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+tooltip_text = "TOOLTIP_LINE_WIDTH"
+max_value = 10.0
+step = 0.01
+allow_greater = true
+
+[node name="SpinBox" type="SpinBox" parent="VBoxContainer/LineWidth"]
+layout_mode = 2
+tooltip_text = "TOOLTIP_LINE_WIDTH"
+step = 0.01
+allow_greater = true
+select_all_on_focus = true
+
+[node name="FillLayerMaterial" type="HBoxContainer" parent="VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_constants/separation = 4
+
+[node name="Label" type="Label" parent="VBoxContainer/FillLayerMaterial"]
+custom_minimum_size = Vector2(42, 0)
+layout_mode = 2
+text = "LAYER_SETTINGS_FILL"
+
+[node name="ColorButton" type="Button" parent="VBoxContainer/FillLayerMaterial"]
+clip_contents = true
+custom_minimum_size = Vector2(64, 32)
+layout_mode = 2
+size_flags_horizontal = 3
+tooltip_text = "TOOLTIP_SELECT_FILL_LAYER_MATERIAL"
+focus_mode = 0
+mouse_default_cursor_shape = 2
+theme_override_styles/focus = SubResource("StyleBoxFlat_5xoro")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_2syiy")
+theme_override_styles/hover = SubResource("StyleBoxFlat_dkh1d")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_4auj0")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_ycrbb")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/FillLayerMaterial/ColorButton"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -12.0
+offset_right = 146.0
+offset_bottom = 12.0
+grow_vertical = 2
+
+[node name="Color" type="Panel" parent="VBoxContainer/FillLayerMaterial/ColorButton/HBoxContainer"]
+material = SubResource("ShaderMaterial_jic5n")
+custom_minimum_size = Vector2(64, 0)
+layout_mode = 2
+size_flags_horizontal = 0
+mouse_filter = 1
+theme_override_styles/panel = SubResource("StyleBoxFlat_tgaui")
+
+[node name="Label" type="Label" parent="VBoxContainer/FillLayerMaterial/ColorButton/HBoxContainer"]
+auto_translate_mode = 2
+layout_mode = 2
+theme_override_font_sizes/font_size = 12
+text = "Material 0"
+
+[node name="MaterialSelectPopup" parent="VBoxContainer/FillLayerMaterial/ColorButton" instance=ExtResource("7_3ul3g")]
+visible = false
+
+[connection signal="button_down" from="VBoxContainer/FillMaterial/EmptyButton" to="." method="_on_empty_button_button_down"]
+[connection signal="button_down" from="VBoxContainer/FillMaterial/FillButton" to="." method="_on_fill_button_button_down"]
+[connection signal="button_down" from="VBoxContainer/FillMaterial/ColorButton" to="." method="_on_color_button_button_down"]
+[connection signal="on_material_selected" from="VBoxContainer/FillMaterial/ColorButton/MaterialSelectPopup" to="." method="_on_material_list_popup_on_material_selected"]
+[connection signal="button_down" from="VBoxContainer/LineMaterial/EmptyButton" to="." method="_on_line_empty_button_button_down"]
+[connection signal="button_down" from="VBoxContainer/LineMaterial/FillButton" to="." method="_on_line_fill_button_button_down"]
+[connection signal="button_down" from="VBoxContainer/LineMaterial/ColorButton" to="." method="_on_line_color_button_button_down"]
+[connection signal="on_material_selected" from="VBoxContainer/LineMaterial/ColorButton/MaterialSelectPopup" to="." method="_on_line_material_list_popup_on_material_selected"]
+[connection signal="value_changed" from="VBoxContainer/LineWidth/HSlider" to="." method="_on_h_slider_value_changed"]
+[connection signal="value_changed" from="VBoxContainer/LineWidth/SpinBox" to="." method="_on_spin_box_value_changed"]
+[connection signal="button_down" from="VBoxContainer/FillLayerMaterial/ColorButton" to="." method="_on_fill_layer_color_button_button_down"]
+[connection signal="on_material_selected" from="VBoxContainer/FillLayerMaterial/ColorButton/MaterialSelectPopup" to="." method="_on_material_list_popup_on_fill_layer_material_selected"]

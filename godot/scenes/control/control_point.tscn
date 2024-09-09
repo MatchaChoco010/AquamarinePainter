@@ -1,0 +1,37 @@
+[gd_scene load_steps=8 format=3 uid="uid://dbiofgdsmekqi"]
+
+[ext_resource type="Script" path="res://src/control/control_point.gd" id="1_iu2b2"]
+[ext_resource type="Texture2D" uid="uid://cwvu8b6n6ba6b" path="res://icons/font_awesome/circle-regular.svg" id="2_6i2pg"]
+[ext_resource type="Shader" path="res://shaders/fill.gdshader" id="2_bxe8b"]
+[ext_resource type="Texture2D" uid="uid://d4dxklmx6r8is" path="res://icons/font_awesome/circle-solid.svg" id="3_qylmn"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_mps6y"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_2yy3u"]
+shader = ExtResource("2_bxe8b")
+shader_parameter/fill_color = Color(1, 1, 1, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_45gnb"]
+shader = ExtResource("2_bxe8b")
+shader_parameter/fill_color = Color(0, 0, 0, 1)
+
+[node name="ControlPoint" type="Node2D"]
+script = ExtResource("1_iu2b2")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_mps6y")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_2yy3u")
+scale = Vector2(0.025, 0.025)
+texture = ExtResource("3_qylmn")
+
+[node name="Sprite2D2" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_45gnb")
+scale = Vector2(0.025, 0.025)
+texture = ExtResource("2_6i2pg")
+
+[connection signal="mouse_entered" from="Area2D" to="." method="_on_area_2d_mouse_entered"]
+[connection signal="mouse_exited" from="Area2D" to="." method="_on_area_2d_mouse_exited"]

@@ -1,0 +1,207 @@
+[gd_scene load_steps=23 format=3 uid="uid://c1nm8iya05plr"]
+
+[ext_resource type="Script" path="res://addons/dockable_container/dockable_container.gd" id="1_1np4h"]
+[ext_resource type="Script" path="res://src/app.gd" id="1_uojh7"]
+[ext_resource type="Script" path="res://addons/dockable_container/layout_panel.gd" id="2_ygcnm"]
+[ext_resource type="Script" path="res://addons/dockable_container/layout.gd" id="3_cit1o"]
+[ext_resource type="Script" path="res://addons/dockable_container/layout_split.gd" id="3_wke7q"]
+[ext_resource type="PackedScene" uid="uid://byc66jalp35s" path="res://scenes/tab/canvas_tab.tscn" id="4_4n2d2"]
+[ext_resource type="PackedScene" uid="uid://dcihb270dgr70" path="res://scenes/tab/layer_list_tab.tscn" id="5_l683t"]
+[ext_resource type="PackedScene" uid="uid://c8ge45ar23ppv" path="res://scenes/tab/layer_setting_tab.tscn" id="7_i41rk"]
+[ext_resource type="PackedScene" uid="uid://blv25euce0b64" path="res://scenes/tab/material_list_tab.tscn" id="8_w7upe"]
+[ext_resource type="PackedScene" uid="uid://b0t6n35a5uvxu" path="res://scenes/sub_window/document_open_window.tscn" id="10_uwbbb"]
+[ext_resource type="PackedScene" uid="uid://dferwtnot6vxw" path="res://scenes/sub_window/document_export_window.tscn" id="11_1ernd"]
+[ext_resource type="PackedScene" uid="uid://7rdbvmswbjw3" path="res://scenes/sub_window/document_size_change_window.tscn" id="12_xatou"]
+[ext_resource type="PackedScene" uid="uid://dd4oq7jxlensx" path="res://scenes/sub_window/config_window.tscn" id="13_wpqkv"]
+[ext_resource type="PackedScene" uid="uid://b85jraf3yfbfl" path="res://scenes/sub_window/licenses_window.tscn" id="14_b85it"]
+
+[sub_resource type="Resource" id="Resource_25ecf"]
+resource_name = "Tabs"
+script = ExtResource("2_ygcnm")
+names = PackedStringArray("CanvasTab")
+current_tab = 0
+
+[sub_resource type="Resource" id="Resource_cyi83"]
+resource_name = "Tabs"
+script = ExtResource("2_ygcnm")
+names = PackedStringArray("Layer")
+current_tab = 0
+
+[sub_resource type="Resource" id="Resource_h8wjn"]
+resource_name = "Split"
+script = ExtResource("3_wke7q")
+direction = 0
+percent = 0.813725
+first = SubResource("Resource_25ecf")
+second = SubResource("Resource_cyi83")
+
+[sub_resource type="Resource" id="Resource_7fjdv"]
+resource_name = "Tabs"
+script = ExtResource("2_ygcnm")
+names = PackedStringArray("LayerSetting")
+current_tab = 0
+
+[sub_resource type="Resource" id="Resource_2gxso"]
+resource_name = "Tabs"
+script = ExtResource("2_ygcnm")
+names = PackedStringArray("MaterialList")
+current_tab = 0
+
+[sub_resource type="Resource" id="Resource_bn7bj"]
+resource_name = "Split"
+script = ExtResource("3_wke7q")
+direction = 1
+percent = 0.1875
+first = SubResource("Resource_7fjdv")
+second = SubResource("Resource_2gxso")
+
+[sub_resource type="Resource" id="Resource_s46d0"]
+resource_name = "Split"
+script = ExtResource("3_wke7q")
+direction = 0
+percent = 0.812339
+first = SubResource("Resource_h8wjn")
+second = SubResource("Resource_bn7bj")
+
+[sub_resource type="Resource" id="Resource_htknp"]
+resource_name = "Layout"
+script = ExtResource("3_cit1o")
+root = SubResource("Resource_s46d0")
+hidden_tabs = {}
+
+[node name="App" type="PanelContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("1_uojh7")
+
+[node name="LayerSubViewports" type="Node2D" parent="."]
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="Panel" type="Panel" parent="VBoxContainer"]
+custom_minimum_size = Vector2(0, 32)
+layout_mode = 2
+
+[node name="MenuBar" type="MenuBar" parent="VBoxContainer/Panel"]
+custom_minimum_size = Vector2(0, 32)
+layout_mode = 2
+offset_right = 1152.0
+offset_bottom = 32.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/Panel/MenuBar"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+theme_override_constants/separation = 16
+
+[node name="FileMenuButton" type="MenuButton" parent="VBoxContainer/Panel/MenuBar/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "MENU_FILE"
+item_count = 7
+popup/item_0/text = "FILE_NEW_DOCUMENT"
+popup/item_1/text = "FILE_OPEN_DOCUMENT"
+popup/item_1/id = 1
+popup/item_2/text = "FILE_SAVE"
+popup/item_2/id = 2
+popup/item_3/text = "FILE_SAVE_AS"
+popup/item_3/id = 3
+popup/item_4/text = "FILE_CLOSE_DOCUMENT"
+popup/item_4/id = 4
+popup/item_5/id = 5
+popup/item_5/disabled = true
+popup/item_5/separator = true
+popup/item_6/text = "FILE_EXPORT_IMAGE"
+popup/item_6/id = 6
+
+[node name="EditMenuButton" type="MenuButton" parent="VBoxContainer/Panel/MenuBar/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "MENU_EDIT"
+item_count = 4
+popup/item_0/text = "EDIT_UNDO"
+popup/item_1/text = "EDIT_REDO"
+popup/item_1/id = 1
+popup/item_2/id = 2
+popup/item_2/disabled = true
+popup/item_2/separator = true
+popup/item_3/text = "EDIT_CHANGE_DOCUMENT_SIZE"
+popup/item_3/id = 3
+
+[node name="ToolMenuButton" type="MenuButton" parent="VBoxContainer/Panel/MenuBar/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "MENU_TOOL"
+item_count = 2
+popup/item_0/text = "TOOL_CONFIG"
+popup/item_1/text = "TOOL_LICENSES"
+popup/item_1/id = 1
+
+[node name="DockableContainer" type="Container" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+mouse_filter = 2
+script = ExtResource("1_1np4h")
+tab_alignment = 0
+hide_single_tab = true
+layout = SubResource("Resource_htknp")
+
+[node name="CanvasTab" parent="VBoxContainer/DockableContainer" instance=ExtResource("4_4n2d2")]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="Layer" parent="VBoxContainer/DockableContainer" instance=ExtResource("5_l683t")]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="LayerSetting" parent="VBoxContainer/DockableContainer" instance=ExtResource("7_i41rk")]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="MaterialList" parent="VBoxContainer/DockableContainer" instance=ExtResource("8_w7upe")]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="DocumentOpenWindow" parent="." instance=ExtResource("10_uwbbb")]
+unique_name_in_owner = true
+visible = false
+
+[node name="DocumentExportWindow" parent="." instance=ExtResource("11_1ernd")]
+unique_name_in_owner = true
+visible = false
+
+[node name="DocumentSizeChangeWindow" parent="." instance=ExtResource("12_xatou")]
+unique_name_in_owner = true
+visible = false
+
+[node name="ConfigWindow" parent="." instance=ExtResource("13_wpqkv")]
+unique_name_in_owner = true
+visible = false
+
+[node name="LicensesWindow" parent="." instance=ExtResource("14_b85it")]
+unique_name_in_owner = true
+visible = false
+
+[node name="FileDialog" type="FileDialog" parent="."]
+unique_name_in_owner = true
+size = Vector2i(303, 180)
+access = 2
+use_native_dialog = true
+
+[node name="CloseConfirmationDialog" type="ConfirmationDialog" parent="."]
+unique_name_in_owner = true
+initial_position = 2
+size = Vector2i(233, 106)
+ok_button_text = "破棄"
+dialog_text = "ドキュメントが保存されていません。
+破棄しますか？"
+
+[connection signal="on_create_document" from="DocumentOpenWindow" to="." method="_on_document_open_window_on_create_document"]
+[connection signal="on_export_document" from="DocumentExportWindow" to="." method="_on_document_export_window_on_export_document"]
+[connection signal="on_change_document_size" from="DocumentSizeChangeWindow" to="." method="_on_document_size_change_window_on_change_document_size"]

@@ -1,0 +1,15 @@
+[package]
+name = "shape"
+version = "0.1.0"
+edition = "2021"
+license = "MIT"
+
+[lib]
+crate-type = ["cdylib"]
+
+[dependencies]
+godot = "0.1.3"
+i_float = "1.3.0"
+i_overlay = "1.5.2"
+i_shape = "1.3.0"
+i_triangle = "0.25.2"

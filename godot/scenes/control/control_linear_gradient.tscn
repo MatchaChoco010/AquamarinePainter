@@ -1,0 +1,71 @@
+[gd_scene load_steps=8 format=3 uid="uid://be2jf3flgfqum"]
+
+[ext_resource type="Shader" path="res://shaders/fill.gdshader" id="1_hlr76"]
+[ext_resource type="Script" path="res://src/control/control_linear_gradient.gd" id="1_tmiqw"]
+[ext_resource type="Texture2D" uid="uid://d4dxklmx6r8is" path="res://icons/font_awesome/circle-solid.svg" id="2_qxkbt"]
+[ext_resource type="Texture2D" uid="uid://cwvu8b6n6ba6b" path="res://icons/font_awesome/circle-regular.svg" id="3_itlt2"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_vx16l"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_r8oe2"]
+shader = ExtResource("1_hlr76")
+shader_parameter/fill_color = Color(1, 1, 1, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_i3wlg"]
+shader = ExtResource("1_hlr76")
+shader_parameter/fill_color = Color(0, 0, 0, 1)
+
+[node name="ControlLinearGradient" type="Node2D"]
+script = ExtResource("1_tmiqw")
+
+[node name="Line2D" type="Line2D" parent="."]
+unique_name_in_owner = true
+points = PackedVector2Array(0, 0, 100, 0)
+width = 5.0
+default_color = Color(1, 1, 1, 0.501961)
+
+[node name="StartPoint" type="Node2D" parent="."]
+unique_name_in_owner = true
+
+[node name="StartArea2D" type="Area2D" parent="StartPoint"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StartPoint/StartArea2D"]
+shape = SubResource("CircleShape2D_vx16l")
+
+[node name="StartSprite2D" type="Sprite2D" parent="StartPoint"]
+unique_name_in_owner = true
+material = SubResource("ShaderMaterial_r8oe2")
+scale = Vector2(0.025, 0.025)
+texture = ExtResource("2_qxkbt")
+
+[node name="StartSprite2D2" type="Sprite2D" parent="StartPoint"]
+unique_name_in_owner = true
+material = SubResource("ShaderMaterial_i3wlg")
+scale = Vector2(0.025, 0.025)
+texture = ExtResource("3_itlt2")
+
+[node name="EndPoint" type="Node2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(100, 0)
+
+[node name="EndArea2D" type="Area2D" parent="EndPoint"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="EndPoint/EndArea2D"]
+shape = SubResource("CircleShape2D_vx16l")
+
+[node name="EndSprite2D" type="Sprite2D" parent="EndPoint"]
+unique_name_in_owner = true
+material = SubResource("ShaderMaterial_r8oe2")
+scale = Vector2(0.025, 0.025)
+texture = ExtResource("2_qxkbt")
+
+[node name="EndSprite2D2" type="Sprite2D" parent="EndPoint"]
+unique_name_in_owner = true
+material = SubResource("ShaderMaterial_i3wlg")
+scale = Vector2(0.025, 0.025)
+texture = ExtResource("3_itlt2")
+
+[connection signal="mouse_entered" from="StartPoint/StartArea2D" to="." method="_on_start_area_2d_mouse_entered"]
+[connection signal="mouse_exited" from="StartPoint/StartArea2D" to="." method="_on_start_area_2d_mouse_exited"]
+[connection signal="mouse_entered" from="EndPoint/EndArea2D" to="." method="_on_end_area_2d_mouse_entered"]
+[connection signal="mouse_exited" from="EndPoint/EndArea2D" to="." method="_on_end_area_2d_mouse_exited"]

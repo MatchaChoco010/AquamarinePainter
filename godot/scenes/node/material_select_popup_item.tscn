@@ -1,0 +1,90 @@
+[gd_scene load_steps=12 format=3 uid="uid://b20uvm65bbdew"]
+
+[ext_resource type="Script" path="res://src/node/material_select_popup_item.gd" id="1_13an1"]
+[ext_resource type="Shader" path="res://shaders/fill_checker_alpha.gdshader" id="2_nxm34"]
+[ext_resource type="Shader" path="res://shaders/linear_gradient_checker_alpha.gdshader" id="3_au23s"]
+[ext_resource type="Shader" path="res://shaders/radial_gradient_checker_alpha.gdshader" id="4_3lpqx"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_l0331"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_pete5"]
+shader = ExtResource("2_nxm34")
+shader_parameter/fill_color = Color(1, 1, 1, 1)
+shader_parameter/document_size = Vector2(480, 720)
+shader_parameter/document_scale = 1.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_86o67"]
+shader = ExtResource("3_au23s")
+shader_parameter/document_size = Vector2(480, 720)
+shader_parameter/document_scale = 1.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_y1hs2"]
+shader = ExtResource("4_3lpqx")
+shader_parameter/document_size = Vector2(480, 720)
+shader_parameter/document_scale = 1.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ync7d"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_erkst"]
+shader = ExtResource("2_nxm34")
+shader_parameter/fill_color = Color(1, 1, 1, 0)
+shader_parameter/document_size = Vector2(64, 24)
+shader_parameter/document_scale = 1.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_l7so6"]
+bg_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[node name="MaterialSelectPopupItem" type="PanelContainer"]
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -12.5
+offset_bottom = 19.5
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_l0331")
+script = ExtResource("1_13an1")
+_color_material = SubResource("ShaderMaterial_pete5")
+_linear_gradient_material = SubResource("ShaderMaterial_86o67")
+_radial_gradient_material = SubResource("ShaderMaterial_y1hs2")
+
+[node name="Padding" type="PanelContainer" parent="."]
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 1
+theme_override_styles/panel = SubResource("StyleBoxFlat_ync7d")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Padding"]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="Color" type="Panel" parent="Padding/HBoxContainer"]
+unique_name_in_owner = true
+material = SubResource("ShaderMaterial_erkst")
+custom_minimum_size = Vector2(64, 0)
+layout_mode = 2
+size_flags_horizontal = 0
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_l7so6")
+
+[node name="Label" type="Label" parent="Padding/HBoxContainer"]
+unique_name_in_owner = true
+auto_translate_mode = 2
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Material"
+
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]

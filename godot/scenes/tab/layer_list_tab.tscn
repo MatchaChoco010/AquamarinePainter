@@ -1,0 +1,317 @@
+[gd_scene load_steps=23 format=3 uid="uid://dcihb270dgr70"]
+
+[ext_resource type="Script" path="res://src/tab/layer_list_tab.gd" id="1_e2s20"]
+[ext_resource type="Shader" path="res://shaders/fill.gdshader" id="1_hktsu"]
+[ext_resource type="Texture2D" uid="uid://bihym07yhfwvb" path="res://icons/font_awesome/caret-down-solid.svg" id="1_nxau0"]
+[ext_resource type="Texture2D" uid="uid://cfy4c56trjpcp" path="res://icons/font_awesome/trash-solid.svg" id="3_l014w"]
+[ext_resource type="Texture2D" uid="uid://eej4fsmgxa1d" path="res://icons/square-plus.svg" id="4_6kt4j"]
+[ext_resource type="Texture2D" uid="uid://clwpv24en3js7" path="res://icons/fill-plus.svg" id="4_gli0p"]
+[ext_resource type="Texture2D" uid="uid://dsgcgfj17p0ih" path="res://icons/folder-plus.svg" id="5_2nysa"]
+[ext_resource type="Texture2D" uid="uid://ukf4j5kwqbqc" path="res://icons/font_awesome/clone-regular.svg" id="6_jqgq0"]
+[ext_resource type="Texture2D" uid="uid://mrvjp3pgu7ea" path="res://icons/open_path.svg" id="7_ng5sb"]
+[ext_resource type="Texture2D" uid="uid://bkls8jpsc3ps5" path="res://icons/union.svg" id="7_ue8sd"]
+[ext_resource type="Texture2D" uid="uid://dc2f1ibod6vkx" path="res://icons/font_awesome/lock-open-solid.svg" id="7_vwbx8"]
+[ext_resource type="Texture2D" uid="uid://bgaugxuhl5lvm" path="res://icons/font_awesome/lock-solid.svg" id="8_fb4p3"]
+[ext_resource type="Texture2D" uid="uid://esb812dxjhx3" path="res://icons/diff.svg" id="8_s2v0l"]
+[ext_resource type="Texture2D" uid="uid://b5qkp4rnmh7p5" path="res://icons/closed_path.svg" id="8_uys6j"]
+[ext_resource type="Texture2D" uid="uid://delwiq2ud4o5b" path="res://icons/intersect.svg" id="9_yxned"]
+[ext_resource type="Texture2D" uid="uid://bsxiknl4vq61y" path="res://icons/xor.svg" id="10_56f02"]
+[ext_resource type="PackedScene" uid="uid://83wedgkgqa8o" path="res://scenes/node/list_drop_cursor.tscn" id="16_y34j8"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pn8me"]
+content_margin_left = 2.0
+content_margin_top = 6.0
+content_margin_right = 2.0
+content_margin_bottom = 0.0
+bg_color = Color(0.6, 0.6, 0.6, 0.392157)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_amtw7"]
+shader = ExtResource("1_hktsu")
+shader_parameter/fill_color = Color(1, 1, 1, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_tcfkd"]
+shader = ExtResource("1_hktsu")
+shader_parameter/fill_color = Color(1, 1, 1, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gjcem"]
+bg_color = Color(1, 1, 1, 0.705882)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_00u5q"]
+content_margin_top = 2.0
+content_margin_bottom = 2.0
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[node name="LayerListTab" type="PanelContainer"]
+custom_minimum_size = Vector2(320, 0)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_e2s20")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="PanelContainer" type="PanelContainer" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_pn8me")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/PanelContainer"]
+layout_mode = 2
+
+[node name="LayerController" type="HBoxContainer" parent="VBoxContainer/PanelContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="BlendModeMenu" type="MenuButton" parent="VBoxContainer/PanelContainer/VBoxContainer/LayerController"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(160, 0)
+layout_mode = 2
+tooltip_text = "TOOLTIP_BLEND_MODE"
+text = "BLEND_MODE_NORMAL"
+flat = false
+expand_icon = true
+item_count = 5
+popup/item_0/text = "BLEND_MODE_NORMAL"
+popup/item_1/text = "BLEND_MODE_ADD"
+popup/item_1/id = 1
+popup/item_2/text = "BLEND_MODE_MULTIPLY"
+popup/item_2/id = 2
+popup/item_3/text = "BLEND_MODE_SCREEN"
+popup/item_3/id = 3
+popup/item_4/text = "BLEND_MODE_OVERLAY"
+popup/item_4/id = 4
+
+[node name="Caret" type="Sprite2D" parent="VBoxContainer/PanelContainer/VBoxContainer/LayerController/BlendModeMenu"]
+material = SubResource("ShaderMaterial_amtw7")
+position = Vector2(148, 16)
+scale = Vector2(0.03, 0.03)
+texture = ExtResource("1_nxau0")
+
+[node name="AlphaSlider" type="HSlider" parent="VBoxContainer/PanelContainer/VBoxContainer/LayerController"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(60, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+tooltip_text = "TOOLTIP_ALPHA"
+value = 100.0
+
+[node name="AlphaSpinBox" type="SpinBox" parent="VBoxContainer/PanelContainer/VBoxContainer/LayerController"]
+unique_name_in_owner = true
+layout_mode = 2
+tooltip_text = "TOOLTIP_ALPHA"
+value = 100.0
+select_all_on_focus = true
+
+[node name="Buttons" type="HBoxContainer" parent="VBoxContainer/PanelContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="AddButton" type="Button" parent="VBoxContainer/PanelContainer/VBoxContainer/Buttons"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+tooltip_text = "TOOLTIP_NEW_PATH_LAYER"
+focus_mode = 0
+
+[node name="Sprite2D" type="Sprite2D" parent="VBoxContainer/PanelContainer/VBoxContainer/Buttons/AddButton"]
+material = SubResource("ShaderMaterial_tcfkd")
+position = Vector2(16, 16)
+texture = ExtResource("4_6kt4j")
+
+[node name="AddFillButton" type="Button" parent="VBoxContainer/PanelContainer/VBoxContainer/Buttons"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+tooltip_text = "TOOLTIP_NEW_FILL_LAYER"
+focus_mode = 0
+
+[node name="Sprite2D" type="Sprite2D" parent="VBoxContainer/PanelContainer/VBoxContainer/Buttons/AddFillButton"]
+material = SubResource("ShaderMaterial_tcfkd")
+position = Vector2(16, 16)
+texture = ExtResource("4_gli0p")
+
+[node name="AddGroupButton" type="Button" parent="VBoxContainer/PanelContainer/VBoxContainer/Buttons"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+tooltip_text = "TOOLTIP_NEW_GROUP_LAYER"
+focus_mode = 0
+
+[node name="Sprite2D" type="Sprite2D" parent="VBoxContainer/PanelContainer/VBoxContainer/Buttons/AddGroupButton"]
+material = SubResource("ShaderMaterial_tcfkd")
+position = Vector2(16, 16)
+texture = ExtResource("5_2nysa")
+
+[node name="Space" type="ColorRect" parent="VBoxContainer/PanelContainer/VBoxContainer/Buttons"]
+custom_minimum_size = Vector2(16, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+color = Color(1, 1, 1, 0)
+
+[node name="DeleteButton" type="Button" parent="VBoxContainer/PanelContainer/VBoxContainer/Buttons"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+tooltip_text = "TOOLTIP_DELETE_LAYER"
+focus_mode = 0
+
+[node name="Sprite2D" type="Sprite2D" parent="VBoxContainer/PanelContainer/VBoxContainer/Buttons/DeleteButton"]
+material = SubResource("ShaderMaterial_tcfkd")
+position = Vector2(16, 16)
+scale = Vector2(0.03, 0.03)
+texture = ExtResource("3_l014w")
+
+[node name="ClipButton" type="Button" parent="VBoxContainer/PanelContainer/VBoxContainer/Buttons"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+tooltip_text = "TOOLTIP_CLIPPING"
+focus_mode = 0
+toggle_mode = true
+
+[node name="Sprite2D" type="Sprite2D" parent="VBoxContainer/PanelContainer/VBoxContainer/Buttons/ClipButton"]
+material = SubResource("ShaderMaterial_tcfkd")
+position = Vector2(16, 16)
+scale = Vector2(0.04, 0.04)
+texture = ExtResource("6_jqgq0")
+
+[node name="Panel" type="Panel" parent="VBoxContainer/PanelContainer/VBoxContainer/Buttons/ClipButton"]
+visible = false
+layout_mode = 0
+offset_right = 32.0
+offset_bottom = 32.0
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_gjcem")
+
+[node name="LockButton" type="Button" parent="VBoxContainer/PanelContainer/VBoxContainer/Buttons"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+tooltip_text = "TOOLTIP_LAYER_LOCK"
+focus_mode = 0
+
+[node name="UnLocked" type="Sprite2D" parent="VBoxContainer/PanelContainer/VBoxContainer/Buttons/LockButton"]
+material = SubResource("ShaderMaterial_tcfkd")
+position = Vector2(16, 16)
+scale = Vector2(0.03, 0.03)
+texture = ExtResource("7_vwbx8")
+
+[node name="Locked" type="Sprite2D" parent="VBoxContainer/PanelContainer/VBoxContainer/Buttons/LockButton"]
+visible = false
+material = SubResource("ShaderMaterial_tcfkd")
+position = Vector2(16, 16)
+scale = Vector2(0.03, 0.03)
+texture = ExtResource("8_fb4p3")
+
+[node name="Panel" type="Panel" parent="VBoxContainer/PanelContainer/VBoxContainer/Buttons/LockButton"]
+visible = false
+layout_mode = 0
+offset_right = 32.0
+offset_bottom = 32.0
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_gjcem")
+
+[node name="OpenCloseButton" type="Button" parent="VBoxContainer/PanelContainer/VBoxContainer/Buttons"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+tooltip_text = "TOOLTIP_PATH_OPEN_CLOSE"
+focus_mode = 0
+
+[node name="Open" type="Sprite2D" parent="VBoxContainer/PanelContainer/VBoxContainer/Buttons/OpenCloseButton"]
+material = SubResource("ShaderMaterial_tcfkd")
+position = Vector2(16, 16)
+scale = Vector2(0.03, 0.03)
+texture = ExtResource("7_ng5sb")
+
+[node name="Close" type="Sprite2D" parent="VBoxContainer/PanelContainer/VBoxContainer/Buttons/OpenCloseButton"]
+visible = false
+material = SubResource("ShaderMaterial_tcfkd")
+position = Vector2(16, 16)
+scale = Vector2(0.03, 0.03)
+texture = ExtResource("8_uys6j")
+
+[node name="BooleanMenu" type="MenuButton" parent="VBoxContainer/PanelContainer/VBoxContainer/Buttons"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(48, 0)
+layout_mode = 2
+tooltip_text = "TOOLTIP_BOOLEAN"
+flat = false
+item_count = 4
+popup/item_0/text = "BOOLEAN_UNION"
+popup/item_0/icon = ExtResource("7_ue8sd")
+popup/item_1/text = "BOOLEAN_DIFF"
+popup/item_1/icon = ExtResource("8_s2v0l")
+popup/item_1/id = 1
+popup/item_2/text = "BOOLEAN_INTERSECT"
+popup/item_2/icon = ExtResource("9_yxned")
+popup/item_2/id = 2
+popup/item_3/text = "BOOLEAN_XOR"
+popup/item_3/icon = ExtResource("10_56f02")
+popup/item_3/id = 3
+
+[node name="Union" type="Sprite2D" parent="VBoxContainer/PanelContainer/VBoxContainer/Buttons/BooleanMenu"]
+position = Vector2(16, 16)
+texture = ExtResource("7_ue8sd")
+
+[node name="Diff" type="Sprite2D" parent="VBoxContainer/PanelContainer/VBoxContainer/Buttons/BooleanMenu"]
+visible = false
+position = Vector2(16, 16)
+texture = ExtResource("8_s2v0l")
+
+[node name="Intersect" type="Sprite2D" parent="VBoxContainer/PanelContainer/VBoxContainer/Buttons/BooleanMenu"]
+visible = false
+position = Vector2(16, 16)
+texture = ExtResource("9_yxned")
+
+[node name="Xor" type="Sprite2D" parent="VBoxContainer/PanelContainer/VBoxContainer/Buttons/BooleanMenu"]
+visible = false
+position = Vector2(16, 16)
+texture = ExtResource("10_56f02")
+
+[node name="Caret" type="Sprite2D" parent="VBoxContainer/PanelContainer/VBoxContainer/Buttons/BooleanMenu"]
+material = SubResource("ShaderMaterial_amtw7")
+position = Vector2(36, 16)
+scale = Vector2(0.03, 0.03)
+texture = ExtResource("1_nxau0")
+
+[node name="HSeparator" type="HSeparator" parent="VBoxContainer/PanelContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="ScrollContainer" type="ScrollContainer" parent="VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_00u5q")
+horizontal_scroll_mode = 0
+
+[node name="ListContainer" type="VBoxContainer" parent="VBoxContainer/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/separation = 0
+
+[node name="ListDropCursor" parent="VBoxContainer/ScrollContainer/ListContainer" instance=ExtResource("16_y34j8")]
+visible = false
+layout_mode = 2
+
+[connection signal="value_changed" from="VBoxContainer/PanelContainer/VBoxContainer/LayerController/AlphaSlider" to="." method="_on_alpha_slider_value_changed"]
+[connection signal="value_changed" from="VBoxContainer/PanelContainer/VBoxContainer/LayerController/AlphaSpinBox" to="." method="_on_alpha_spin_box_value_changed"]
+[connection signal="button_up" from="VBoxContainer/PanelContainer/VBoxContainer/Buttons/AddButton" to="." method="_on_add_button_button_up"]
+[connection signal="button_up" from="VBoxContainer/PanelContainer/VBoxContainer/Buttons/AddFillButton" to="." method="_on_add_fill_button_button_up"]
+[connection signal="button_up" from="VBoxContainer/PanelContainer/VBoxContainer/Buttons/AddGroupButton" to="." method="_on_add_group_button_button_up"]
+[connection signal="button_up" from="VBoxContainer/PanelContainer/VBoxContainer/Buttons/DeleteButton" to="." method="_on_delete_button_button_up"]
+[connection signal="button_up" from="VBoxContainer/PanelContainer/VBoxContainer/Buttons/ClipButton" to="." method="_on_clip_button_button_up"]
+[connection signal="button_up" from="VBoxContainer/PanelContainer/VBoxContainer/Buttons/LockButton" to="." method="_on_lock_button_button_up"]
+[connection signal="button_up" from="VBoxContainer/PanelContainer/VBoxContainer/Buttons/OpenCloseButton" to="." method="_on_open_close_button_button_up"]

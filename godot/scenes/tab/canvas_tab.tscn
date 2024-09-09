@@ -1,0 +1,432 @@
+[gd_scene load_steps=35 format=3 uid="uid://byc66jalp35s"]
+
+[ext_resource type="Script" path="res://src/tab/canvas_tab.gd" id="1_ncx2q"]
+[ext_resource type="Texture2D" uid="uid://dfnl502akgfg8" path="res://icons/font_awesome/square-solid.svg" id="2_tlqyv"]
+[ext_resource type="Shader" path="res://shaders/fill.gdshader" id="3_eswo4"]
+[ext_resource type="Texture2D" uid="uid://07j3j13jje5v" path="res://icons/font_awesome/pen-nib-solid.svg" id="5_sym1t"]
+[ext_resource type="Texture2D" uid="uid://cdcr07emv7u2m" path="res://icons/font_awesome/location-arrow-solid.svg" id="6_q1bn5"]
+[ext_resource type="Texture2D" uid="uid://oqlqlwg6cqcm" path="res://icons/font_awesome/wrench-solid.svg" id="7_mdo1i"]
+[ext_resource type="Texture2D" uid="uid://yopfar782wsm" path="res://icons/font_awesome/expand-solid.svg" id="8_wm1fp"]
+[ext_resource type="Texture2D" uid="uid://bej0ujfdimntj" path="res://icons/font_awesome/magnifying-glass-solid.svg" id="9_cj28u"]
+[ext_resource type="Script" path="res://src/node/scroll_space.gd" id="9_o6lqk"]
+[ext_resource type="Texture2D" uid="uid://dyvcxrvw3yagv" path="res://icons/mirror.svg" id="9_xaqig"]
+[ext_resource type="Texture2D" uid="uid://bsxn6okjahtn5" path="res://icons/mirror-flip.svg" id="10_tov58"]
+[ext_resource type="PackedScene" uid="uid://cd6xjiluvcmfe" path="res://scenes/control/control_transform.tscn" id="11_ky1kn"]
+[ext_resource type="Shader" path="res://shaders/texture_checker_alpha.gdshader" id="11_ri1os"]
+[ext_resource type="PackedScene" uid="uid://be2jf3flgfqum" path="res://scenes/control/control_linear_gradient.tscn" id="14_4tfv1"]
+[ext_resource type="PackedScene" uid="uid://blrkftxov4tvd" path="res://scenes/control/control_radial_gradient.tscn" id="15_u081m"]
+
+[sub_resource type="Theme" id="Theme_ojja4"]
+
+[sub_resource type="InputEventAction" id="InputEventAction_dm14j"]
+action = &"drawing_tool"
+
+[sub_resource type="Shortcut" id="Shortcut_e3cxh"]
+events = [SubResource("InputEventAction_dm14j")]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_jp0pb"]
+shader = ExtResource("3_eswo4")
+shader_parameter/fill_color = Color(1, 1, 1, 1)
+
+[sub_resource type="InputEventAction" id="InputEventAction_uy78h"]
+action = &"manipulate_tool"
+
+[sub_resource type="Shortcut" id="Shortcut_fdgit"]
+events = [SubResource("InputEventAction_uy78h")]
+
+[sub_resource type="InputEventAction" id="InputEventAction_x80ry"]
+action = &"parameter_tuning_tool"
+
+[sub_resource type="Shortcut" id="Shortcut_s8d5o"]
+events = [SubResource("InputEventAction_x80ry")]
+
+[sub_resource type="InputEventAction" id="InputEventAction_76oil"]
+action = &"expand"
+
+[sub_resource type="Shortcut" id="Shortcut_7bhdh"]
+events = [SubResource("InputEventAction_76oil")]
+
+[sub_resource type="InputEventAction" id="InputEventAction_671x0"]
+action = &"zoom_reset"
+
+[sub_resource type="Shortcut" id="Shortcut_anip2"]
+events = [SubResource("InputEventAction_671x0")]
+
+[sub_resource type="InputEventAction" id="InputEventAction_kxvvb"]
+action = &"mirror"
+
+[sub_resource type="Shortcut" id="Shortcut_ebprw"]
+events = [SubResource("InputEventAction_kxvvb")]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_3kpkk"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_j051o"]
+shader = ExtResource("11_ri1os")
+shader_parameter/document_size = Vector2(780, 720)
+shader_parameter/document_scale = 1.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8044c"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_i2io4"]
+shader = ExtResource("3_eswo4")
+shader_parameter/fill_color = Color(1, 1, 1, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jwqrm"]
+bg_color = Color(0, 0.5, 0.4, 0.313726)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0, 1, 0.8, 1)
+
+[node name="CanvasTab" type="PanelContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("1_ncx2q")
+
+[node name="canvas" type="HBoxContainer" parent="."]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="ToolsPanel" type="PanelContainer" parent="canvas"]
+layout_mode = 2
+theme = SubResource("Theme_ojja4")
+
+[node name="ToolsStack" type="VBoxContainer" parent="canvas/ToolsPanel"]
+layout_mode = 2
+
+[node name="DrawingButton" type="Button" parent="canvas/ToolsPanel/ToolsStack"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+tooltip_text = "TOOLTIP_DRAWING_TOOL"
+focus_mode = 0
+shortcut = SubResource("Shortcut_e3cxh")
+icon_alignment = 1
+expand_icon = true
+
+[node name="ToolHighlight" type="Sprite2D" parent="canvas/ToolsPanel/ToolsStack/DrawingButton"]
+position = Vector2(24, 24)
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("2_tlqyv")
+
+[node name="Sprite2D" type="Sprite2D" parent="canvas/ToolsPanel/ToolsStack/DrawingButton"]
+material = SubResource("ShaderMaterial_jp0pb")
+position = Vector2(24, 24)
+scale = Vector2(0.04, 0.04)
+texture = ExtResource("5_sym1t")
+
+[node name="Label" type="Label" parent="canvas/ToolsPanel/ToolsStack/DrawingButton"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -40.0
+offset_top = -23.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_font_sizes/font_size = 12
+text = "1"
+horizontal_alignment = 2
+vertical_alignment = 2
+
+[node name="ManipulateButton" type="Button" parent="canvas/ToolsPanel/ToolsStack"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+tooltip_text = "TOOLTIP_MANIPULATE_TOOL"
+focus_mode = 0
+shortcut = SubResource("Shortcut_fdgit")
+icon_alignment = 1
+expand_icon = true
+
+[node name="ToolHighlight" type="Sprite2D" parent="canvas/ToolsPanel/ToolsStack/ManipulateButton"]
+visible = false
+position = Vector2(24, 24)
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("2_tlqyv")
+
+[node name="Sprite2D" type="Sprite2D" parent="canvas/ToolsPanel/ToolsStack/ManipulateButton"]
+material = SubResource("ShaderMaterial_jp0pb")
+position = Vector2(24, 24)
+rotation = -1.5708
+scale = Vector2(0.04, 0.04)
+texture = ExtResource("6_q1bn5")
+
+[node name="Label" type="Label" parent="canvas/ToolsPanel/ToolsStack/ManipulateButton"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -40.0
+offset_top = -23.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_font_sizes/font_size = 12
+text = "2"
+horizontal_alignment = 2
+vertical_alignment = 2
+
+[node name="ParameterTuningButton" type="Button" parent="canvas/ToolsPanel/ToolsStack"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+tooltip_text = "TOOLTIP_PARAMETER_TUNING_TOOL"
+focus_mode = 0
+shortcut = SubResource("Shortcut_s8d5o")
+icon_alignment = 1
+expand_icon = true
+
+[node name="ToolHighlight" type="Sprite2D" parent="canvas/ToolsPanel/ToolsStack/ParameterTuningButton"]
+visible = false
+position = Vector2(24, 24)
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("2_tlqyv")
+
+[node name="Sprite2D" type="Sprite2D" parent="canvas/ToolsPanel/ToolsStack/ParameterTuningButton"]
+material = SubResource("ShaderMaterial_jp0pb")
+position = Vector2(24, 24)
+rotation = -1.5708
+scale = Vector2(0.04, 0.04)
+texture = ExtResource("7_mdo1i")
+
+[node name="Label" type="Label" parent="canvas/ToolsPanel/ToolsStack/ParameterTuningButton"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -40.0
+offset_top = -23.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_font_sizes/font_size = 12
+text = "3"
+horizontal_alignment = 2
+vertical_alignment = 2
+
+[node name="ExpandButton" type="Button" parent="canvas/ToolsPanel/ToolsStack"]
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+tooltip_text = "TOOLTIP_EXPAND"
+focus_mode = 0
+shortcut = SubResource("Shortcut_7bhdh")
+icon_alignment = 1
+expand_icon = true
+
+[node name="Sprite2D" type="Sprite2D" parent="canvas/ToolsPanel/ToolsStack/ExpandButton"]
+material = SubResource("ShaderMaterial_jp0pb")
+position = Vector2(24, 24)
+scale = Vector2(0.04, 0.04)
+texture = ExtResource("8_wm1fp")
+
+[node name="Label" type="Label" parent="canvas/ToolsPanel/ToolsStack/ExpandButton"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -40.0
+offset_top = -23.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_font_sizes/font_size = 12
+text = "4"
+horizontal_alignment = 2
+vertical_alignment = 2
+
+[node name="ZoomResetButton" type="Button" parent="canvas/ToolsPanel/ToolsStack"]
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+tooltip_text = "TOOLTIP_RESET_ZOOM"
+focus_mode = 0
+shortcut = SubResource("Shortcut_anip2")
+icon_alignment = 1
+expand_icon = true
+
+[node name="Sprite2D" type="Sprite2D" parent="canvas/ToolsPanel/ToolsStack/ZoomResetButton"]
+material = SubResource("ShaderMaterial_jp0pb")
+position = Vector2(24, 24)
+scale = Vector2(0.05, 0.05)
+texture = ExtResource("9_cj28u")
+
+[node name="square" type="Sprite2D" parent="canvas/ToolsPanel/ToolsStack/ZoomResetButton"]
+material = SubResource("ShaderMaterial_jp0pb")
+position = Vector2(21.5, 21.5)
+scale = Vector2(0.02, 0.02)
+texture = ExtResource("2_tlqyv")
+
+[node name="Label" type="Label" parent="canvas/ToolsPanel/ToolsStack/ZoomResetButton"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -40.0
+offset_top = -23.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_font_sizes/font_size = 12
+text = "5"
+horizontal_alignment = 2
+vertical_alignment = 2
+
+[node name="MirrorButton" type="Button" parent="canvas/ToolsPanel/ToolsStack"]
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+tooltip_text = "TOOLTIP_MIRROR"
+focus_mode = 0
+shortcut = SubResource("Shortcut_ebprw")
+icon_alignment = 1
+expand_icon = true
+
+[node name="MirrorSprite" type="Sprite2D" parent="canvas/ToolsPanel/ToolsStack/MirrorButton"]
+unique_name_in_owner = true
+material = SubResource("ShaderMaterial_jp0pb")
+position = Vector2(24, 24)
+scale = Vector2(0.06, 0.06)
+texture = ExtResource("9_xaqig")
+
+[node name="MirrorFlipSprite" type="Sprite2D" parent="canvas/ToolsPanel/ToolsStack/MirrorButton"]
+unique_name_in_owner = true
+visible = false
+material = SubResource("ShaderMaterial_jp0pb")
+position = Vector2(24, 24)
+scale = Vector2(0.06, 0.06)
+texture = ExtResource("10_tov58")
+
+[node name="Label" type="Label" parent="canvas/ToolsPanel/ToolsStack/MirrorButton"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -40.0
+offset_top = -23.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_font_sizes/font_size = 12
+text = "6"
+horizontal_alignment = 2
+vertical_alignment = 2
+
+[node name="ScrollSpace" type="Panel" parent="canvas"]
+unique_name_in_owner = true
+clip_contents = true
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_3kpkk")
+script = ExtResource("9_o6lqk")
+
+[node name="Document" type="Panel" parent="canvas/ScrollSpace"]
+visible = false
+material = SubResource("ShaderMaterial_j051o")
+clip_contents = true
+layout_mode = 0
+offset_right = 480.0
+offset_bottom = 720.0
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_8044c")
+
+[node name="ControlLayer" type="Panel" parent="canvas/ScrollSpace"]
+visible = false
+material = SubResource("ShaderMaterial_i2io4")
+layout_mode = 0
+offset_right = 480.0
+offset_bottom = 720.0
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_8044c")
+
+[node name="ControlTransform" parent="canvas/ScrollSpace/ControlLayer" instance=ExtResource("11_ky1kn")]
+unique_name_in_owner = true
+visible = false
+layout_mode = 0
+
+[node name="ControlLinearGradient" parent="canvas/ScrollSpace/ControlLayer" instance=ExtResource("14_4tfv1")]
+unique_name_in_owner = true
+visible = false
+
+[node name="ControlRadialGradient" parent="canvas/ScrollSpace/ControlLayer" instance=ExtResource("15_u081m")]
+unique_name_in_owner = true
+visible = false
+
+[node name="DragAreaPanel" type="Panel" parent="canvas/ScrollSpace"]
+visible = false
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_jwqrm")
+
+[node name="ParameterPanel" type="Panel" parent="canvas/ScrollSpace"]
+unique_name_in_owner = true
+visible = false
+clip_contents = true
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -60.0
+offset_right = 120.0
+grow_vertical = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="canvas/ScrollSpace/ParameterPanel"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 10.0
+offset_top = -20.0
+offset_right = 52.0
+offset_bottom = 20.0
+grow_vertical = 2
+
+[node name="ParameterLabel1" type="Label" parent="canvas/ScrollSpace/ParameterPanel/VBoxContainer"]
+unique_name_in_owner = true
+auto_translate_mode = 2
+layout_mode = 2
+localize_numeral_system = false
+theme_override_colors/font_color = Color(1, 1, 0, 1)
+theme_override_font_sizes/font_size = 12
+text = "Phi: 1.0"
+
+[node name="ParameterLabel2" type="Label" parent="canvas/ScrollSpace/ParameterPanel/VBoxContainer"]
+unique_name_in_owner = true
+auto_translate_mode = 2
+layout_mode = 2
+localize_numeral_system = false
+theme_override_colors/font_color = Color(1, 1, 0, 1)
+theme_override_font_sizes/font_size = 12
+text = "Psi: 1.0"
+
+[connection signal="pressed" from="canvas/ToolsPanel/ToolsStack/DrawingButton" to="." method="_on_drawing_button_pressed"]
+[connection signal="pressed" from="canvas/ToolsPanel/ToolsStack/ManipulateButton" to="." method="_on_direct_selection_button_pressed"]
+[connection signal="pressed" from="canvas/ToolsPanel/ToolsStack/ParameterTuningButton" to="." method="_on_parameter_tuning_button_pressed"]
+[connection signal="pressed" from="canvas/ToolsPanel/ToolsStack/ExpandButton" to="." method="_on_expand_button_pressed"]
+[connection signal="pressed" from="canvas/ToolsPanel/ToolsStack/ZoomResetButton" to="." method="_on_zoom_reset_button_pressed"]
+[connection signal="pressed" from="canvas/ToolsPanel/ToolsStack/MirrorButton" to="." method="_on_mirror_button_pressed"]
+[connection signal="on_manipulate_finished" from="canvas/ScrollSpace/ControlLayer/ControlTransform" to="." method="_on_control_transform_on_manipulate_finished"]

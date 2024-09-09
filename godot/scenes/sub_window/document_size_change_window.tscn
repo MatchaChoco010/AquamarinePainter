@@ -1,0 +1,319 @@
+[gd_scene load_steps=6 format=3 uid="uid://7rdbvmswbjw3"]
+
+[ext_resource type="Script" path="res://src/sub_window/document_size_change_window.gd" id="1_bar4x"]
+[ext_resource type="Shader" path="res://shaders/fill.gdshader" id="2_tk6pd"]
+[ext_resource type="Texture2D" uid="uid://cnqkj40h44qeh" path="res://icons/font_awesome/arrow-right-arrow-left-solid.svg" id="3_23iw0"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_sfrdi"]
+shader = ExtResource("2_tk6pd")
+shader_parameter/fill_color = Color(1, 1, 1, 1)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_6sreq"]
+
+[node name="DocumentSizeChangeWindow" type="Window"]
+title = "DOCUMENT_SIZE_TITLE"
+initial_position = 2
+size = Vector2i(420, 200)
+transient = true
+unresizable = true
+popup_window = true
+script = ExtResource("1_bar4x")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/separation = 12
+alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/HBoxContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "DOCUMENT_SIZE_WIDTH"
+
+[node name="WidthSpinBox" type="SpinBox" parent="VBoxContainer/HBoxContainer/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+min_value = 1.0
+max_value = 2048.0
+value = 1.0
+select_all_on_focus = true
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="VBoxContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/HBoxContainer/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+text = "DOCUMENT_SIZE_HEIGHT"
+
+[node name="HeightSpinBox" type="SpinBox" parent="VBoxContainer/HBoxContainer/VBoxContainer/HBoxContainer2"]
+unique_name_in_owner = true
+layout_mode = 2
+min_value = 1.0
+max_value = 2048.0
+value = 1.0
+select_all_on_focus = true
+
+[node name="SwitchButton" type="Button" parent="VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(24, 0)
+layout_mode = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="VBoxContainer/HBoxContainer/SwitchButton"]
+material = SubResource("ShaderMaterial_sfrdi")
+position = Vector2(12, 32)
+scale = Vector2(0.03, 0.03)
+texture = ExtResource("3_23iw0")
+
+[node name="HBoxConrtainer" type="HBoxContainer" parent="VBoxContainer"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="VBoxContainer/HBoxConrtainer"]
+layout_mode = 2
+size_flags_vertical = 1
+text = "DOCUMENT_SIZE_ANCHOR"
+
+[node name="Panel" type="Panel" parent="VBoxContainer/HBoxConrtainer"]
+custom_minimum_size = Vector2(90, 0)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_6sreq")
+
+[node name="Panel" type="Panel" parent="VBoxContainer/HBoxConrtainer/Panel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TopLeftButton" type="Button" parent="VBoxContainer/HBoxConrtainer/Panel/Panel"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = -6.0
+offset_top = -6.0
+offset_right = 6.0
+offset_bottom = 6.0
+
+[node name="ColorRect" type="ColorRect" parent="VBoxContainer/HBoxConrtainer/Panel/Panel/TopLeftButton"]
+layout_mode = 0
+offset_right = 12.0
+offset_bottom = 12.0
+mouse_filter = 2
+color = Color(0.5, 0.5, 0.5, 1)
+
+[node name="TopButton" type="Button" parent="VBoxContainer/HBoxConrtainer/Panel/Panel"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -6.0
+offset_top = -6.0
+offset_right = 6.0
+offset_bottom = 6.0
+grow_horizontal = 2
+
+[node name="ColorRect" type="ColorRect" parent="VBoxContainer/HBoxConrtainer/Panel/Panel/TopButton"]
+layout_mode = 0
+offset_right = 12.0
+offset_bottom = 12.0
+mouse_filter = 2
+color = Color(0.5, 0.5, 0.5, 1)
+
+[node name="TopRightButton" type="Button" parent="VBoxContainer/HBoxConrtainer/Panel/Panel"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -6.0
+offset_top = -6.0
+offset_right = 6.0
+offset_bottom = 6.0
+grow_horizontal = 0
+
+[node name="ColorRect" type="ColorRect" parent="VBoxContainer/HBoxConrtainer/Panel/Panel/TopRightButton"]
+layout_mode = 0
+offset_right = 12.0
+offset_bottom = 12.0
+mouse_filter = 2
+color = Color(0.5, 0.5, 0.5, 1)
+
+[node name="LeftButton" type="Button" parent="VBoxContainer/HBoxConrtainer/Panel/Panel"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = -6.0
+offset_top = -6.0
+offset_right = 6.0
+offset_bottom = 6.0
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="VBoxContainer/HBoxConrtainer/Panel/Panel/LeftButton"]
+layout_mode = 0
+offset_right = 12.0
+offset_bottom = 12.0
+mouse_filter = 2
+color = Color(0.5, 0.5, 0.5, 1)
+
+[node name="CenterButton" type="Button" parent="VBoxContainer/HBoxConrtainer/Panel/Panel"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -6.0
+offset_top = -6.0
+offset_right = 6.0
+offset_bottom = 6.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="VBoxContainer/HBoxConrtainer/Panel/Panel/CenterButton"]
+layout_mode = 0
+offset_right = 12.0
+offset_bottom = 12.0
+mouse_filter = 2
+
+[node name="RightButton" type="Button" parent="VBoxContainer/HBoxConrtainer/Panel/Panel"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -6.0
+offset_top = -6.0
+offset_right = 6.0
+offset_bottom = 6.0
+grow_horizontal = 0
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="VBoxContainer/HBoxConrtainer/Panel/Panel/RightButton"]
+layout_mode = 0
+offset_right = 12.0
+offset_bottom = 12.0
+mouse_filter = 2
+color = Color(0.5, 0.5, 0.5, 1)
+
+[node name="BottomLeftButton" type="Button" parent="VBoxContainer/HBoxConrtainer/Panel/Panel"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = -6.0
+offset_top = -6.0
+offset_right = 6.0
+offset_bottom = 6.0
+grow_vertical = 0
+
+[node name="ColorRect" type="ColorRect" parent="VBoxContainer/HBoxConrtainer/Panel/Panel/BottomLeftButton"]
+layout_mode = 0
+offset_right = 12.0
+offset_bottom = 12.0
+mouse_filter = 2
+color = Color(0.5, 0.5, 0.5, 1)
+
+[node name="BottomButton" type="Button" parent="VBoxContainer/HBoxConrtainer/Panel/Panel"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -6.0
+offset_top = -6.0
+offset_right = 6.0
+offset_bottom = 6.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="ColorRect" type="ColorRect" parent="VBoxContainer/HBoxConrtainer/Panel/Panel/BottomButton"]
+layout_mode = 0
+offset_right = 12.0
+offset_bottom = 12.0
+mouse_filter = 2
+color = Color(0.5, 0.5, 0.5, 1)
+
+[node name="BottomRightButton" type="Button" parent="VBoxContainer/HBoxConrtainer/Panel/Panel"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -6.0
+offset_top = -6.0
+offset_right = 6.0
+offset_bottom = 6.0
+grow_horizontal = 0
+grow_vertical = 0
+
+[node name="ColorRect" type="ColorRect" parent="VBoxContainer/HBoxConrtainer/Panel/Panel/BottomRightButton"]
+layout_mode = 0
+offset_right = 12.0
+offset_bottom = 12.0
+mouse_filter = 2
+color = Color(0.5, 0.5, 0.5, 1)
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+alignment = 2
+
+[node name="CreateButton" type="Button" parent="VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+text = "DOCUMENT_SIZE_CHANGE_SIZE"
+
+[node name="Space2" type="Control" parent="VBoxContainer/HBoxContainer2"]
+custom_minimum_size = Vector2(4, 0)
+layout_mode = 2
+
+[node name="CancelButton" type="Button" parent="VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+text = "DOCUMENT_SIZE_CANCEL"
+
+[node name="Space" type="Control" parent="VBoxContainer/HBoxContainer2"]
+custom_minimum_size = Vector2(24, 0)
+layout_mode = 2
+
+[connection signal="close_requested" from="." to="." method="_on_close_requested"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/SwitchButton" to="." method="_on_switch_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxConrtainer/Panel/Panel/TopLeftButton" to="." method="_on_top_left_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxConrtainer/Panel/Panel/TopButton" to="." method="_on_top_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxConrtainer/Panel/Panel/TopRightButton" to="." method="_on_top_right_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxConrtainer/Panel/Panel/LeftButton" to="." method="_on_left_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxConrtainer/Panel/Panel/CenterButton" to="." method="_on_center_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxConrtainer/Panel/Panel/RightButton" to="." method="_on_right_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxConrtainer/Panel/Panel/BottomLeftButton" to="." method="_on_bottom_left_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxConrtainer/Panel/Panel/BottomButton" to="." method="_on_bottom_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxConrtainer/Panel/Panel/BottomRightButton" to="." method="_on_bottom_right_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer2/CreateButton" to="." method="_on_create_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer2/CancelButton" to="." method="_on_cancel_button_pressed"]
