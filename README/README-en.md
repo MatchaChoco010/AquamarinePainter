@@ -47,7 +47,7 @@ This curve passes through all the control points, and you can adjust the followi
 ## Disclaimer
 
 This app was created for personal use, and there are no plans to add features or respond to requests as an OSS project.
-The source code for this app is distributed under the MPL-2.0 license, so if you need to, please fork it and add your own functions.
+The source code for this app is distributed under the MIT license, so if you need to, please fork it and add your own functions.
 
 ## LICENSE
 
